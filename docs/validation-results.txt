@@ -1,0 +1,22 @@
+Flower Inn & Petal Inn project validation
+Date: 2026-11-23
+
+PASS — TypeScript/TSX source parsed without syntax errors (45 files).
+PASS — Core TypeScript types compiled for catalog, dates, pricing, demo-store and info metadata.
+PASS — 7 pricing and date tests:
+ - Check-out date exclusive night counting
+ - Weekend uplift
+ - Date override precedence
+ - Multi-room total calculation
+ - Reject invalid stay ranges
+ - Invalid ISO date handling
+ - Reject excessive room quantities
+PASS — Local '@/...' imports matched existing source modules.
+
+NOT RUN — Full Next.js 'npm run build', ESLint, server/browser UAT.
+REASON — npm registry DNS was unavailable from the artifact creation runtime, so the required
+Next.js/React packages could not be installed. On a networked machine, run npm install,
+npm run typecheck, npm run lint, npm run test:logic and npm run build.
+
+NO LIVE SERVICES — Supabase/Google/payment/channel manager credentials were not supplied;
+all external integration screens are labeled not connected.

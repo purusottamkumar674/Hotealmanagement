@@ -1,0 +1,16 @@
+'use client';
+import Link from 'next/link';
+import { ArrowUpRight, ArrowRight, BedDouble, Maximize2, Users, MapPin, ChevronRight, Wifi } from 'lucide-react';
+import type { Hotel, Room } from '@/lib/catalog';
+import { HOTELS, money } from '@/lib/catalog';
+export function ImageCover({src,alt,className='',eager=false}:{src:string;alt:string;className?:string;eager?:boolean}){return <div className={`image-cover ${className}`} style={{backgroundImage:`linear-gradient(180deg,transparent 55%,rgba(13,27,24,.14)),url("${src}")`}} role="img" aria-label={alt}><div className="image-fallback">{alt}</div></div>}
+export function HotelCard({hotel,index=0}:{hotel:Hotel;index?:number}){
+  return <Link className="hotel-card" href={`/hotels/${hotel.id}`}><div className="hotel-card-photo"><ImageCover src={hotel.image} alt={`${hotel.name} illustrative hotel photography`}/><span className="photo-top-badge">PROPERTY 0{index+1}</span><span className="hotel-card-arrow"><ArrowUpRight size={21}/></span></div><div className="hotel-card-content"><div><p className="eyebrow">{hotel.accent}</p><h3 className="serif">{hotel.name}</h3><p>{hotel.subtitle}</p></div><span className="view-link">Explore property <ArrowRight size={16}/></span></div></Link>;
+}
+export function RoomCard({room,action='details',onSelect,stayInfo}:{room:Room;action?:'details'|'select';onSelect?:(room:Room)=>void;stayInfo?:{price:number; available:number; nights:number;qty:number}}){
+  const hotel=HOTELS.find(h=>h.id===room.hotelId)!;
+  return <article className="room-card"><div className="room-photo"><ImageCover src={room.image} alt={`${room.name} representative room photo`}/><div className="room-hotel-badge">{hotel.name}</div></div><div className="room-card-body"><div className="room-title-row"><div><span className="eyebrow">{room.subtitle}</span><h3 className="serif">{room.name}</h3></div><div className="room-price"><small>{stayInfo?'Total stay from':'Starting from'}</small><strong>{money(stayInfo?.price ?? room.baseRate)}</strong><span>{stayInfo?`${stayInfo.nights} night${stayInfo.nights>1?'s':''}`:'per night · sample'}</span></div></div><p>{room.description}</p><div className="room-facts"><span><Users size={15}/> Up to {room.guests}</span><span><BedDouble size={15}/> {room.bed}</span><span><Maximize2 size={15}/> {room.size}</span></div><div className="room-card-bottom"><span className="room-available">{stayInfo?`${stayInfo.available} left for your dates`:'Illustrative room & pricing'}</span>{action==='select'&&onSelect?<button onClick={()=>onSelect(room)} className="button button-dark small">Choose room <ArrowRight size={15}/></button>:<Link className="button button-outline small" href={`/hotels/${hotel.id}/rooms/${room.slug}`}>View details <ArrowUpRight size={15}/></Link>}</div></div></article>
+}
+export function SectionTitle({eyebrow,title,description,action,href}:{eyebrow:string;title:React.ReactNode;description?:string;action?:string;href?:string}){
+  return <div className="section-title"><div><div className="eyebrow with-line">{eyebrow}</div><h2 className="serif">{title}</h2>{description&&<p>{description}</p>}</div>{action&&href&&<Link href={href} className="text-link">{action} <ArrowUpRight size={18}/></Link>}</div>;
+}

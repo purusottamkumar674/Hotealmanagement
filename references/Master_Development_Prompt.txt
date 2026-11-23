@@ -1,0 +1,2382 @@
+# ULTIMATE MASTER DEVELOPMENT PROMPT
+# FLOWER INN & PETAL INN — COMPLETE MULTI-HOTEL BOOKING, MANAGEMENT, DYNAMIC PRICING & DIGITAL REPUTATION SYSTEM
+
+## 1. ROLE AND OBJECTIVE
+
+Act as a Senior Full-Stack Software Engineer, Next.js Architect, Supabase Database Engineer, Hotel Management Software Architect, UI/UX Designer, Booking Engine Developer, Technical SEO Expert, Security Engineer, QA Engineer and DevOps Specialist with over 10 years of professional experience.
+
+Build a complete, production-ready, secure, modern, responsive and database-driven multi-hotel website and hotel management platform for two sister hotels:
+
+1. Flower Inn
+2. Petal Inn
+
+The project must follow the supplied Statement of Work (SOW) dated 23 November 2026.
+
+The platform must combine both hotels into one public website while maintaining separate hotel information, room inventory, bookings, pricing, availability, analytics and management permissions.
+
+The system must provide a seamless guest booking experience and a centralized administration platform.
+
+The final deliverable must be a real functional application, not just a frontend mockup, static website, demonstration dashboard or incomplete codebase.
+
+Build the complete system, including:
+
+- Public hotel website
+- Multi-property architecture
+- Hotel-specific pages
+- Hotel search and selection
+- Room types and room details
+- Real-time availability checking
+- Centralized reservation engine
+- Customer booking management
+- Dynamic daily room pricing
+- Hotel administrator dashboard
+- Super administrator dashboard
+- Property manager dashboard
+- Staff management and permissions
+- Booking operations
+- Customer management
+- Payment integration architecture
+- Booking cancellation and refund workflows
+- OTA and channel manager integration architecture
+- Google Business Profile management workflows
+- Google Maps and Local SEO management
+- Genuine review collection workflows
+- Review response management
+- Marketing website content management
+- Analytics and performance reporting
+- Email and notification workflows
+- Database, APIs, security and deployment
+
+The application must be modular, scalable, maintainable and suitable for commercial hotel operations.
+
+## 2. IMPORTANT PROJECT REQUIREMENTS
+
+The original SOW establishes four primary business objectives.
+
+### Objective A — Online Reputation Improvement
+
+Implement workflows to support:
+
+- Genuine Google review collection
+- Post-checkout review invitations
+- Reception and room QR codes
+- Review response management
+- Monitoring recurring guest complaints
+- Review count and rating analytics
+- Monthly reputation reporting
+
+SOW targets:
+
+- Google rating of 4.5+ or improvement of 0.4 over baseline
+- 100% growth in review count over six months
+- Responses to more than 90% of reviews within 48 hours
+
+These are business targets, not guaranteed software outcomes.
+
+Never generate, purchase, incentivize or manipulate fake reviews.
+
+### Objective B — Google Maps and Local SEO
+
+Support separate Google Business Profiles for Flower Inn and Petal Inn.
+
+Required marketing operations include:
+
+- Profile audit
+- Local keyword management
+- Business information consistency
+- Photo and video management
+- Local citations and backlinks
+- Review monitoring
+- Weekly Google Posts and offers
+- Local ranking analysis
+- Monthly SEO performance reports
+
+Business targets include Top 3 Local Pack visibility for agreed keywords and 50% improvement in relevant profile interactions.
+
+Do not promise specific Google rankings.
+
+### Objective C — Unified Hotel Website
+
+Build one professional website containing both hotels with:
+
+- Separate property pages
+- Hotel selector
+- Cross-property navigation
+- Combined availability search
+- Centralized booking engine
+- Room galleries
+- Amenities
+- Location information
+- Authentic reviews
+- Contact information
+- Mobile-responsive UI
+
+If one hotel is fully booked, suggest availability at the sister hotel.
+
+### Objective D — Daily Variable Pricing
+
+Allow authorized hotel staff to edit room prices by:
+
+- Property
+- Room type
+- Date
+- Date range
+- Weekday
+- Weekend
+- Season
+- Special event
+- Promotional campaign
+
+Changes must become visible on the website within minutes after successful publication.
+
+Implement pricing history and audit logs.
+
+## 3. TECHNOLOGY STACK
+
+Use the following recommended architecture.
+
+Frontend:
+- Next.js using a current stable App Router release
+- React
+- TypeScript with strict mode
+- Tailwind CSS
+- shadcn/ui
+- Lucide Icons
+- Framer Motion or Motion for React
+- React Hook Form
+- Zod
+
+Backend:
+- Next.js Server Components
+- Server Actions where appropriate
+- Route Handlers for APIs and webhooks
+- Server-side authorization
+- Supabase Auth
+- Supabase PostgreSQL
+- Supabase Storage
+- PostgreSQL transactions
+- Database functions where transactional consistency is required
+
+Data and application architecture:
+- TanStack Query where client-side server state is useful
+- Zustand only for necessary client state
+- Type-safe validation
+- Modular domain-driven service structure
+- Transaction-safe booking and payment operations
+
+Integrations:
+- Razorpay as the proposed payment gateway for an India-based deployment, subject to client confirmation
+- Resend or another approved email provider
+- Approved WhatsApp Business provider
+- Google Analytics 4
+- Google Search Console
+- Google Maps integration
+- Google Business Profile APIs where eligible and authorized
+- Supported hotel channel manager API
+- Vercel deployment
+- Supabase production environment
+
+Use environment variables for all external integration credentials.
+
+Never hardcode API keys, secrets or passwords.
+
+Do not claim an integration is operational until it is configured and verified.
+
+## 4. DESIGN AND BRANDING
+
+Design a premium hospitality website.
+
+The website must feel like a modern professional hotel booking platform.
+
+Visual inspiration:
+- Premium boutique hotels
+- Elegant travel booking websites
+- Modern hospitality websites
+- Clean luxury hotel portals
+
+Suggested design direction:
+- Warm ivory backgrounds
+- Deep navy or charcoal text
+- Elegant muted gold accents
+- Natural hospitality photography
+- Spacious layouts
+- Premium typography
+- Clean booking components
+- Smooth transitions
+
+The exact brand colors, logos and photography must remain replaceable.
+
+Do not invent official hotel logos or claim sample photos depict the real hotels.
+
+Use temporary clearly labeled sample assets until authentic hotel assets are provided.
+
+### Responsive Design
+
+Optimize all pages for:
+
+- Mobile
+- Tablet
+- Desktop
+- Large screens
+
+Mobile requirements:
+
+- Responsive navigation
+- Mobile booking search
+- Touch-friendly calendars
+- Sticky booking controls where useful
+- Readable room cards
+- Accessible forms
+- Responsive admin tables
+- Mobile-friendly admin navigation
+
+### Animation
+
+Add restrained professional animations:
+
+- Hero transitions
+- Image reveal
+- Card hover effects
+- Page transitions where appropriate
+- Smooth section scrolling
+- Loading skeletons
+- Success feedback
+
+Animations must not reduce accessibility or performance.
+
+Respect prefers-reduced-motion.
+
+## 5. COMPLETE WEBSITE STRUCTURE
+
+Build the following public pages.
+
+### 5.1 Homepage
+
+Route: /
+
+Sections:
+
+1. Header and navigation
+2. Premium hotel hero
+3. Central booking search
+4. Introduction to both hotels
+5. Featured properties
+6. Featured rooms
+7. Hotel amenities
+8. Reasons to stay with us
+9. Special offers
+10. Hotel gallery
+11. Authentic guest reviews
+12. Location information
+13. FAQs
+14. Contact and enquiry CTA
+15. Footer
+
+Homepage booking search must support:
+
+- Hotel selection
+- All hotels
+- Check-in date
+- Check-out date
+- Adult count
+- Child count
+- Number of rooms
+- Search availability
+
+Clicking Search must show actual availability from the backend.
+
+### 5.2 Hotels Listing
+
+Route: /hotels
+
+Show both properties.
+
+Each hotel card should display:
+
+- Hotel name
+- Featured image
+- Short introduction
+- Location
+- Amenities
+- Available room types
+- Starting price based on selected dates when available
+- View Hotel button
+- Check Availability button
+
+### 5.3 Flower Inn Page
+
+Route: /hotels/flower-inn
+
+Display:
+
+- Hotel hero
+- Property description
+- Gallery
+- Room categories
+- Amenities
+- Check-in and checkout information
+- Location
+- Map
+- Policies
+- FAQs
+- Reviews
+- Availability search
+- Booking button
+
+Include a sister-property recommendation for Petal Inn.
+
+### 5.4 Petal Inn Page
+
+Route: /hotels/petal-inn
+
+Implement the same functional features as Flower Inn, using Petal Inn's independent database records.
+
+Include a sister-property recommendation for Flower Inn.
+
+### 5.5 Rooms Page
+
+Route: /rooms
+
+Implement:
+
+- Property filter
+- Date filter
+- Occupancy filter
+- Room type filter
+- Price sorting
+- Availability filter
+
+Each room card must show:
+
+- Room name
+- Hotel name
+- Images
+- Beds
+- Maximum occupancy
+- Room size if provided
+- Amenities
+- Cancellation policy
+- Applicable price
+- Taxes and fees disclosure
+- Availability status
+- View Details
+- Book Now
+
+### 5.6 Room Details Page
+
+Route: /hotels/[hotelSlug]/rooms/[roomSlug]
+
+Show:
+
+- Image gallery
+- Detailed description
+- Occupancy
+- Room amenities
+- Bed details
+- Room policies
+- Date-dependent pricing
+- Available inventory
+- Booking CTA
+- Related room suggestions
+
+### 5.7 Availability Search Results
+
+Route: /search
+
+Customer should be able to:
+
+- Select hotel or all hotels
+- Select dates
+- Select guests
+- View available rooms
+- Compare rooms
+- Select multiple eligible rooms
+- See pricing breakdown
+- Continue to checkout
+
+Do not display unavailable inventory as bookable.
+
+If Flower Inn is sold out:
+
+"Flower Inn is unavailable for your selected dates. Explore available rooms at Petal Inn."
+
+Perform an actual availability search before presenting that recommendation.
+
+### 5.8 Booking Checkout
+
+Route: /checkout
+
+Required fields:
+
+- Guest full name
+- Mobile number
+- Email address
+- Guest count
+- Special requests
+- Billing information if required
+- Acceptance of booking terms
+
+Display:
+
+- Hotel
+- Room type
+- Check-in date
+- Check-out date
+- Number of nights
+- Number of rooms
+- Nightly rate breakdown
+- Discounts
+- Applicable taxes
+- Total amount
+- Cancellation terms
+- Payment option
+
+Validate all information on the server.
+
+### 5.9 Booking Confirmation
+
+Route: /booking/confirmation/[reference]
+
+Display:
+
+- Booking reference
+- Property name
+- Guest details permitted for the authenticated session
+- Selected rooms
+- Check-in and checkout dates
+- Payment status
+- Total amount
+- Confirmation information
+- Contact details
+- Download confirmation
+- Manage booking link
+
+Do not expose private booking information through a guessable public booking reference alone.
+
+### 5.10 Additional Pages
+
+Implement:
+
+- /about
+- /gallery
+- /amenities
+- /offers
+- /contact
+- /faq
+- /policies
+- /privacy-policy
+- /terms-and-conditions
+- /cancellation-policy
+- /booking/manage
+- /login
+- /signup (optional guest account)
+- /forgot-password
+- /account
+- /account/bookings
+- /account/profile
+- /404
+
+Add only policies approved by the business. Clearly mark missing legal policy text for completion.
+
+## 6. COMPLETE HOTEL BOOKING ENGINE
+
+Build a real reservation system.
+
+### 6.1 Booking Workflow
+
+The complete process:
+
+Step 1: Customer visits website.
+
+Step 2: Customer selects Flower Inn, Petal Inn or All Hotels.
+
+Step 3: Customer chooses check-in and checkout dates.
+
+Step 4: Customer enters guest count and room count.
+
+Step 5: Backend checks actual availability.
+
+Step 6: Available room types and correct prices are displayed.
+
+Step 7: Customer chooses room.
+
+Step 8: System calculates the complete price.
+
+Step 9: Customer enters guest details.
+
+Step 10: System creates a temporary inventory reservation.
+
+Step 11: Customer completes the supported booking/payment flow.
+
+Step 12: Backend verifies the transaction.
+
+Step 13: Booking is confirmed.
+
+Step 14: Customer receives confirmation.
+
+Step 15: Hotel dashboard receives the new booking.
+
+Step 16: Inventory is updated atomically.
+
+### 6.2 Booking Status
+
+Support configurable statuses:
+
+- Pending
+- Awaiting Payment
+- Confirmed
+- Checked In
+- Checked Out
+- Cancelled
+- No Show
+- Expired
+
+Record all status transitions.
+
+A confirmed booking must never disappear when a payment provider or email service temporarily fails.
+
+### 6.3 Prevent Double Booking
+
+This is a critical production requirement.
+
+Implement:
+
+- Database transaction-based inventory reservation
+- Concurrency-safe availability checks
+- Atomic inventory updates
+- Expiring temporary booking holds
+- Idempotent booking operations
+- Duplicate request protection
+- Server-side final availability verification
+
+Handle two customers trying to reserve the final room simultaneously.
+
+Only one transaction should succeed if one room remains.
+
+Do not rely on frontend checks for inventory consistency.
+
+### 6.4 Date Handling
+
+Use the hotel's configured local timezone.
+
+Store timestamps consistently and represent hotel stay dates as calendar dates.
+
+Check-in is inclusive and checkout is exclusive for nightly inventory.
+
+Prevent:
+
+- Checkout before check-in
+- Invalid dates
+- Zero-night stays unless explicitly supported
+- Exceeding room occupancy
+- Negative room inventory
+- Unavailable room reservations
+
+### 6.5 Booking Modifications
+
+Support authorized changes to:
+
+- Guest details
+- Room type
+- Stay dates
+- Guest count
+- Booking status
+
+Recheck inventory and recalculate prices before confirming modifications.
+
+Keep an audit record.
+
+### 6.6 Booking Cancellation
+
+Implement a configurable cancellation policy system.
+
+Support:
+
+- Cancellation requests
+- Eligibility checks
+- Refund calculation
+- Admin approval where applicable
+- Payment gateway refunds
+- Inventory release
+- Cancellation confirmation
+
+Do not invent or hardcode final hotel cancellation policies.
+
+### 6.7 Guest Booking
+
+Support guest checkout without requiring an account by default.
+
+Optionally allow customers to create accounts.
+
+For guest booking retrieval, use secure verification, such as a time-limited link or email/phone OTP.
+
+## 7. MULTI-HOTEL DATABASE ARCHITECTURE
+
+Use a multi-property PostgreSQL schema.
+
+The database must keep each hotel's data logically separated using hotel_id or property_id.
+
+Suggested tables:
+
+### hotels
+
+Fields:
+
+- id
+- name
+- slug
+- description
+- short_description
+- address
+- city
+- state
+- country
+- postal_code
+- latitude
+- longitude
+- contact_phone
+- contact_email
+- check_in_time
+- check_out_time
+- timezone
+- status
+- created_at
+- updated_at
+
+### hotel_images
+
+- id
+- hotel_id
+- storage_path
+- alt_text
+- image_type
+- sort_order
+
+### amenities
+
+- id
+- name
+- icon
+- category
+
+### hotel_amenities
+
+- hotel_id
+- amenity_id
+
+### room_types
+
+- id
+- hotel_id
+- name
+- slug
+- description
+- maximum_adults
+- maximum_children
+- maximum_occupancy
+- room_size
+- bed_configuration
+- base_price_minor
+- currency
+- active
+
+### room_images
+
+- id
+- room_type_id
+- storage_path
+- alt_text
+- sort_order
+
+### rooms
+
+- id
+- hotel_id
+- room_type_id
+- room_number
+- floor
+- operational_status
+- created_at
+
+Represent physical rooms separately from room types where required.
+
+### room_amenities
+
+- room_type_id
+- amenity_id
+
+### room_inventory
+
+- id
+- hotel_id
+- room_type_id
+- date
+- total_inventory
+- blocked_inventory
+- available_inventory
+
+Use appropriate database constraints and transactional inventory calculations.
+
+### room_rates
+
+- id
+- hotel_id
+- room_type_id
+- date
+- price_minor
+- currency
+- pricing_rule_id
+- created_by
+- updated_at
+
+### pricing_rules
+
+- id
+- hotel_id
+- room_type_id
+- name
+- rule_type
+- priority
+- start_date
+- end_date
+- conditions
+- adjustment
+- minimum_price_minor
+- maximum_price_minor
+- active
+
+### bookings
+
+- id
+- booking_reference
+- hotel_id
+- customer_id
+- primary_guest_name
+- primary_guest_email
+- primary_guest_phone
+- check_in_date
+- check_out_date
+- total_guests
+- currency
+- subtotal_minor
+- discount_minor
+- tax_minor
+- total_minor
+- booking_status
+- payment_status
+- booking_source
+- created_at
+- updated_at
+
+### booking_items
+
+- id
+- booking_id
+- room_type_id
+- room_id
+- quantity
+- number_of_nights
+- nightly_rate_snapshot
+- subtotal_minor
+
+Store immutable pricing snapshots.
+
+### booking_holds
+
+- id
+- hotel_id
+- booking_id
+- expires_at
+- status
+
+### customers
+
+- id
+- auth_user_id
+- name
+- email
+- phone
+- created_at
+
+### payments
+
+- id
+- booking_id
+- provider
+- external_payment_id
+- amount_minor
+- currency
+- status
+- verified_at
+
+### refunds
+
+- id
+- payment_id
+- booking_id
+- amount_minor
+- reason
+- status
+- external_refund_id
+
+### hotel_staff
+
+- id
+- auth_user_id
+- hotel_id
+- role
+- active
+
+### roles_and_permissions
+
+Create an appropriate normalized role and permission system.
+
+### review_invitations
+
+Track genuine review invitation workflows.
+
+### review_records
+
+Store only authorized review data from permitted sources.
+
+### review_responses
+
+Track staff responses and review management activity.
+
+### seo_keywords
+
+Store agreed target keywords.
+
+### keyword_rank_history
+
+Store dated local ranking observations with their data source and location context.
+
+### business_profile_metrics
+
+Store authorized Google Business Profile performance data.
+
+### cms_pages
+
+Store approved public website content.
+
+### hotel_offers
+
+Store promotional offers.
+
+### notifications
+
+Store notification delivery and state.
+
+### integrations
+
+Store provider configuration metadata and connection status.
+
+Never store raw third-party credentials in public database columns.
+
+### audit_logs
+
+Track sensitive changes.
+
+### system_settings
+
+Store global business settings.
+
+Use additional normalized tables where necessary.
+
+Requirements:
+
+- Proper primary keys
+- Foreign keys
+- Indexes
+- Unique constraints
+- Check constraints
+- Referential integrity
+- Server-side validation
+- Row Level Security
+- Transaction-safe mutations
+- Migration scripts
+- Seed data
+
+Do not rely on an insecure frontend-only database design.
+
+## 8. COMPLETE ADMIN DASHBOARD
+
+Route: /admin
+
+Build a professional SaaS-style admin interface.
+
+### Dashboard Design
+
+Use:
+
+- Sidebar navigation
+- Header
+- Search
+- Notifications
+- Summary cards
+- Charts
+- Tables
+- Filters
+- Export options
+- Date range controls
+- Hotel switcher
+- Mobile navigation
+
+### Dashboard Overview
+
+Display:
+
+- Total Hotels
+- Total Rooms
+- Rooms Available
+- Rooms Occupied
+- Today's Arrivals
+- Today's Departures
+- Total Bookings
+- Pending Bookings
+- Confirmed Bookings
+- Cancelled Bookings
+- Total Revenue
+- Pending Payments
+- Occupancy Rate
+- Average Daily Rate
+- Revenue Per Available Room
+- Recent Bookings
+- Upcoming Reservations
+
+Calculate analytics from actual booking and inventory data.
+
+Exclude cancelled and invalid bookings as appropriate.
+
+Do not display invented production metrics.
+
+### Admin Navigation
+
+- Overview
+- Hotels
+- Room Types
+- Physical Rooms
+- Inventory
+- Availability Calendar
+- Pricing Calendar
+- Bookings
+- Guests
+- Payments
+- Refunds
+- Offers
+- Reviews
+- Google Maps SEO
+- Local Keyword Tracking
+- Website CMS
+- Gallery
+- Staff
+- Reports
+- Integrations
+- Notifications
+- Audit Logs
+- Settings
+
+## 9. ADMIN ROLES AND PERMISSIONS
+
+Support:
+
+### Super Admin
+
+Can manage the entire platform and both hotels.
+
+Permissions include:
+
+- All properties
+- All bookings
+- All room configurations
+- All pricing
+- All staff
+- Reports
+- Website content
+- System settings
+- Integrations
+- Audit information
+
+### Group Admin
+
+Can manage both properties according to assigned permissions.
+
+### Property Manager
+
+Can manage only assigned hotel properties.
+
+### Front Desk Staff
+
+Can manage:
+
+- Assigned hotel reservations
+- Guest arrival and departure
+- Check-in and checkout
+- Booking updates
+- Operational availability
+
+### Finance Staff
+
+Can manage authorized:
+
+- Payments
+- Refunds
+- Revenue reporting
+- Invoices
+
+### Marketing / SEO Staff
+
+Can manage:
+
+- Reviews
+- Google Business Profile workflows
+- SEO keywords
+- Website content
+- Media
+- Local marketing reports
+
+### Customer
+
+Can access only their own verified bookings and personal information.
+
+Enforce permissions both in server logic and database policies.
+
+Never trust a frontend role flag.
+
+Prevent privilege escalation.
+
+Prevent unauthorized access between Flower Inn and Petal Inn.
+
+## 10. HOTEL MANAGEMENT
+
+Authorized administrators must be able to:
+
+- Add hotel
+- Edit hotel information
+- Upload images
+- Configure property-specific policies
+- Manage amenities
+- Configure check-in and checkout times
+- Manage contact information
+- Manage map coordinates
+- Set hotel visibility
+- Assign staff
+- View hotel analytics
+
+Although the initial system is for two hotels, structure the database so additional hotels can be added later without rewriting the architecture.
+
+The public website must initially show only the two configured hotels.
+
+## 11. ROOM MANAGEMENT
+
+Implement full room management.
+
+Features:
+
+- Add room type
+- Edit room type
+- Delete or deactivate room type safely
+- Manage room images
+- Configure occupancy
+- Set amenities
+- Configure bed types
+- Configure base pricing
+- Configure active inventory
+- Mark physical rooms unavailable
+- Create maintenance blocks
+- View room availability
+
+Do not delete historical booking references when a room is deactivated.
+
+Use soft deletion or archival where appropriate.
+
+## 12. DYNAMIC DAILY PRICING ENGINE
+
+Build a comprehensive dynamic pricing system.
+
+### 12.1 Pricing Calendar
+
+Admin selects:
+
+- Hotel
+- Room type
+- Date or date range
+
+The calendar displays:
+
+- Current rate
+- Availability
+- Occupancy
+- Active pricing rule
+- Special date indicators
+
+Admin can select dates and edit prices.
+
+### 12.2 Bulk Price Updates
+
+Example:
+
+Hotel: Flower Inn  
+Room: Deluxe Room  
+Date Range: 1 December to 15 December  
+New Price: ₹2,000 per night
+
+The system must apply the update to the selected dates only.
+
+### 12.3 Weekend Pricing
+
+Allow separate weekday and weekend rates.
+
+Example:
+
+Monday–Thursday: ₹1,500  
+Friday–Sunday: ₹2,000
+
+These values are sample data, not approved hotel prices.
+
+### 12.4 Seasonal Pricing
+
+Support:
+
+- Normal Season
+- Peak Season
+- Holiday Season
+- Festival Season
+- Event-based Pricing
+
+### 12.5 Occupancy-Based Pricing
+
+Optional feature from the SOW.
+
+Example:
+
+If occupancy rises above a configurable threshold, apply an approved price adjustment.
+
+Require administrator-defined:
+
+- Occupancy thresholds
+- Price increase/decrease
+- Floor price
+- Ceiling price
+
+Do not automatically activate demand pricing without hotel approval.
+
+### 12.6 Discount Rules
+
+Support:
+
+- Percentage discount
+- Fixed amount discount
+- Seasonal offer
+- Promotional code
+- Long-stay discount
+- Date-limited offer
+
+### 12.7 Minimum Stay
+
+Allow restrictions like:
+
+- Minimum one night
+- Minimum two nights
+- Minimum three nights during selected dates
+
+### 12.8 Price Calculation
+
+The booking price must be calculated server-side.
+
+For example:
+
+Night 1: ₹1,500  
+Night 2: ₹2,000  
+Night 3: ₹2,500  
+
+Subtotal: ₹6,000
+
+Then apply the correct approved discounts and applicable taxes.
+
+Do not assume a fixed tax percentage.
+
+Use configurable tax rules approved by the business.
+
+Store monetary values in integer minor units or a safe decimal representation, never binary floating-point money calculations.
+
+### 12.9 Pricing Priority
+
+Define deterministic rules for conflicts.
+
+Recommended precedence:
+
+1. Explicit approved date override
+2. Active property/room promotions
+3. Seasonal or special-event rule
+4. Weekend rule
+5. Default room rate
+
+Discount interaction must be configurable.
+
+Create tests for overlapping pricing rules.
+
+### 12.10 Pricing History
+
+Log:
+
+- Old price
+- New price
+- Date affected
+- Hotel
+- Room type
+- Administrator
+- Change timestamp
+- Reason
+
+Existing confirmed bookings must retain their original contractual rate unless explicitly modified through an approved workflow.
+
+## 13. PAYMENT SYSTEM
+
+The SOW does not name a payment gateway.
+
+Implement a provider abstraction, with Razorpay sandbox as the proposed initial implementation if an India-based payment setup is approved.
+
+Support configurable modes:
+
+- Pay Online
+- Pay at Hotel
+- Partial Advance Payment
+
+Only activate the modes approved by the client.
+
+### Payment Security
+
+Implement:
+
+- Server-side payment order creation
+- Signature verification
+- Verified webhooks
+- Idempotent webhook processing
+- Payment status reconciliation
+- Failed payment handling
+- Retry-safe confirmation
+- Refund processing
+- Payment audit logs
+
+Never trust the frontend payment success response without backend verification.
+
+Never store full card numbers or CVV.
+
+### Payment Status
+
+- Pending
+- Authorized
+- Paid
+- Failed
+- Refunded
+- Partially Refunded
+
+Keep booking status separate from payment status.
+
+Only confirm inventory according to the configured payment and reservation policy.
+
+### Invoices
+
+Provide booking receipts and invoice generation with configurable business details and applicable taxes.
+
+Do not invent hotel registration numbers, GSTIN or legal information.
+
+## 14. BOOKING ADMIN MANAGEMENT
+
+Admin must be able to:
+
+- View all bookings
+- Filter by hotel
+- Search by reference
+- Search by guest
+- Filter by date
+- Filter by booking status
+- View booking details
+- Confirm eligible reservations
+- Modify bookings
+- Process cancellation
+- Mark checked in
+- Mark checked out
+- Record offline payment
+- View payment history
+- Export booking reports
+
+### Manual Reservations
+
+Front desk staff should be able to create bookings for:
+
+- Phone reservations
+- Walk-in guests
+- Authorized offline reservations
+
+Manual bookings must use the same inventory and pricing validation as website bookings.
+
+### Calendar View
+
+Create a reservation calendar showing:
+
+- Hotel
+- Room
+- Date range
+- Booked rooms
+- Available rooms
+- Blocked rooms
+- Arrivals
+- Departures
+
+## 15. OTA AND CHANNEL MANAGER INTEGRATION
+
+The original SOW requires a channel-manager-based pricing synchronization capability.
+
+Potential OTA destinations:
+
+- Booking.com
+- MakeMyTrip
+- Agoda
+- Other approved channels
+
+Do not assume these platforms provide unrestricted direct APIs.
+
+### Integration Architecture
+
+Build a channel manager adapter with support for:
+
+- Connection configuration
+- Authorized API authentication
+- Hotel/property mapping
+- Room type mapping
+- Rate plan mapping
+- Inventory synchronization
+- Price synchronization
+- Minimum-stay restrictions
+- Booking import
+- Cancellation updates
+- Sync logs
+- Error reporting
+- Retry queue
+
+### Critical Requirements
+
+Avoid:
+
+- Double booking
+- Inventory overselling
+- Duplicate external reservations
+- Silent synchronization failures
+
+Store external reservation IDs and idempotency keys.
+
+Provide reconciliation jobs.
+
+If no approved channel manager credentials are available, implement:
+
+- Interface definitions
+- Integration settings UI
+- Sandbox/mock adapter
+- Connection status
+- Sync event logging
+- Documentation for enabling a real provider
+
+Clearly label real-provider sync as inactive until verified.
+
+Do not falsely represent a mock integration as a live OTA connection.
+
+## 16. GOOGLE BUSINESS PROFILE MANAGEMENT
+
+Both hotels must have separate Google Business Profiles.
+
+Build an internal marketing dashboard to help manage the work.
+
+Store:
+
+- Property
+- Authorized business profile identifier
+- Profile URL
+- Verified status
+- Business name
+- Address
+- Phone
+- Website URL
+- Business description
+- Category
+- Amenities
+- Local keyword targets
+
+### GBP Integration
+
+Where Google API access, eligibility and permissions allow:
+
+- Read supported profile information
+- Retrieve authorized performance metrics
+- Synchronize available review information
+- Track profile activities
+- Manage supported updates
+
+Where access is unavailable, provide manual workflows with clear status and evidence.
+
+Never scrape protected systems or misrepresent manually entered data as API-verified.
+
+## 17. GOOGLE MAPS SEO DASHBOARD
+
+Route: /admin/seo
+
+Sections:
+
+- SEO Overview
+- Flower Inn SEO
+- Petal Inn SEO
+- Target Keywords
+- Local Ranking History
+- Google Business Profile Audit
+- Citation Tracker
+- Local Backlinks
+- SEO Tasks
+- Monthly Reports
+
+### Keyword Tracking
+
+Allow SEO staff to configure:
+
+- Keyword
+- Target hotel
+- City
+- Geographic tracking point
+- Device/context when available
+- Tracking source
+- Target ranking
+
+Example keyword patterns:
+
+- Hotels in [City]
+- Hotel near [Landmark]
+- Budget hotels in [City]
+- Best hotel near [Landmark]
+
+Do not invent hotel cities or landmarks.
+
+### Ranking Reports
+
+Show:
+
+- Keyword
+- Hotel
+- Current observed ranking
+- Previous observed ranking
+- Change
+- Date
+- Tracking source
+- Geographic context
+
+Implement data import or authorized provider integration.
+
+Do not pretend Google provides a guaranteed universal Maps rank.
+
+## 18. REVIEWS AND REPUTATION MANAGEMENT
+
+Route: /admin/reviews
+
+Implement a genuine guest feedback and review workflow.
+
+### Review Collection
+
+Provide:
+
+- QR code generation
+- Hotel-specific review links
+- Reception QR download
+- Room QR download
+- Post-checkout email templates
+- Post-checkout WhatsApp templates
+- SMS templates where enabled
+- Review invitation tracking
+
+### Automated Review Invitations
+
+Recommended workflow:
+
+Booking completed  
+→ Guest checks out  
+→ Approved waiting period  
+→ Send review invitation  
+→ Record invitation status
+
+Respect user consent, messaging policies and provider regulations.
+
+Do not send duplicate unwanted invitations.
+
+### Review Management
+
+Admin should view:
+
+- Review platform
+- Hotel
+- Rating
+- Review date
+- Review content when authorized
+- Response status
+- Response deadline
+- Assigned team member
+
+### Review Replies
+
+Support:
+
+- Positive review response templates
+- Negative review response templates
+- Professional customized replies
+- Approval before publishing
+- Reply activity log
+
+A draft reply is not automatically a published platform response.
+
+### Service Gap Analysis
+
+Enable tagging recurring complaints, including:
+
+- Cleanliness
+- Staff service
+- Food
+- Room condition
+- Noise
+- Pricing
+- Check-in
+- Maintenance
+
+Generate monthly summaries and recommended operational improvements.
+
+### Anti-Spam and Compliance
+
+Never implement:
+
+- Fake reviews
+- Paid positive reviews
+- Review gating
+- Misleading review manipulation
+- Fabricated ratings
+
+Request honest reviews from guests without conditioning invitations on positive experiences.
+
+## 19. WEBSITE CONTENT MANAGEMENT SYSTEM
+
+Allow authorized administrators to edit public website content without changing source code.
+
+CMS features:
+
+- Homepage hero
+- Hotel descriptions
+- Hotel photos
+- Room descriptions
+- Facilities
+- Offers
+- Testimonials from authorized sources
+- FAQs
+- Contact information
+- SEO metadata
+- Promotional banners
+
+Support image uploads to Supabase Storage.
+
+Implement:
+
+- File type validation
+- File size restrictions
+- Secure upload authorization
+- Image optimization
+- Alt text
+- Display ordering
+- Draft/published states
+
+## 20. TECHNICAL SEO IMPLEMENTATION
+
+Implement:
+
+- Semantic HTML
+- Page-specific metadata
+- Dynamic meta titles
+- Dynamic descriptions
+- Canonical URLs
+- XML sitemap
+- robots.txt
+- Breadcrumb navigation
+- Open Graph metadata
+- Mobile-first layouts
+- Optimized images
+- Fast page loading
+- Internal links
+- Structured data
+- Analytics tracking
+- Conversion tracking
+
+Use appropriate Schema.org types including Hotel and relevant business data.
+
+Only publish structured fields supported by real content.
+
+Review schema must comply with applicable search-engine policies, including restrictions on self-serving reviews.
+
+### Hotel-Specific SEO
+
+Flower Inn and Petal Inn must have separate:
+
+- Landing pages
+- Metadata
+- Structured data
+- Contact information
+- Location information
+- Canonical URLs
+
+Avoid duplicated location copy.
+
+### Analytics
+
+Configure:
+
+- Google Analytics 4
+- Google Search Console verification
+- Booking search events
+- Room selection events
+- Checkout initiation
+- Verified booking completion
+- Contact enquiry conversion
+
+Respect applicable consent and privacy requirements.
+
+## 21. CUSTOMER COMMUNICATIONS
+
+Build reusable notification templates.
+
+### Booking Confirmation
+
+Send an email after verified confirmation.
+
+Include:
+
+- Hotel
+- Booking reference
+- Guest name
+- Check-in
+- Check-out
+- Room details
+- Amount
+- Payment status
+- Contact information
+
+### Additional Notifications
+
+Support:
+
+- Payment success
+- Payment failure
+- Booking cancellation
+- Refund update
+- Booking modification
+- Pre-arrival reminder
+- Check-out completion
+- Review invitation
+
+Use configurable delivery providers.
+
+Provide logs, retries and failure reporting.
+
+Never claim a message was sent until provider delivery has been attempted and recorded accurately.
+
+## 22. REPORTS AND ANALYTICS
+
+Build separate dashboards for operational and marketing analytics.
+
+### Hotel Reports
+
+- Total bookings
+- Total revenue
+- Occupancy rate
+- Average daily rate
+- Revenue per available room
+- Booking source
+- Room type performance
+- Cancellation rate
+- Payment status
+- Date range analysis
+- Property comparison
+
+### Marketing Reports
+
+- Rating history
+- Review growth
+- Review response performance
+- Google Maps keyword rankings
+- Google Business Profile interactions
+- Calls
+- Direction requests
+- Website traffic
+- Booking conversion performance
+
+Use real data from integrations or clearly labeled manual inputs.
+
+### Reporting Schedule
+
+Support:
+
+- Weekly project status reporting
+- Monthly operational/marketing reporting
+- Quarterly strategic performance review
+
+Allow exports where appropriate:
+
+- CSV
+- PDF
+
+Ensure property-scoped permissions apply to exports.
+
+## 23. SYSTEM SECURITY
+
+Security must be implemented from the beginning.
+
+Requirements:
+
+- Supabase Auth
+- Server-side authentication
+- Role-based authorization
+- Property-scoped Row Level Security
+- Secure session management
+- Validated form submissions
+- Protected API endpoints
+- Secure secrets handling
+- Rate limiting for sensitive routes
+- Login abuse protection
+- CSRF protection where applicable
+- Safe database queries
+- Input sanitization where required
+- File upload security
+- Webhook signature verification
+- Audit logging
+- PII access restrictions
+- Safe error messages
+
+Never expose service-role credentials to the browser.
+
+Never rely exclusively on client-side authorization.
+
+Avoid storing unnecessary sensitive guest identification documents.
+
+Create a documented backup, recovery and incident response approach.
+
+## 24. PERFORMANCE REQUIREMENTS
+
+Optimize for production usage.
+
+Implement:
+
+- Next.js Server Components
+- Appropriate caching
+- Dynamic rendering for live availability
+- Cache invalidation after content changes
+- Image optimization
+- Lazy loading
+- Database indexes
+- Pagination
+- Efficient queries
+- Loading states
+- Error boundaries
+- Accessible components
+
+Do not cache sensitive booking information publicly.
+
+Do not serve stale inventory or prices in a way that permits incorrect checkout.
+
+Aim for strong Core Web Vitals on public pages.
+
+## 25. ACCESSIBILITY
+
+Implement:
+
+- Keyboard navigation
+- Accessible form labels
+- Proper heading structure
+- Clear validation messages
+- Adequate contrast
+- Focus indicators
+- Screen-reader-compatible controls
+- Accessible calendars
+- Reduced-motion support
+
+Target WCAG 2.2 AA where practical.
+
+## 26. COMPLETE PROJECT FILE STRUCTURE
+
+Create a clean and maintainable structure similar to:
+
+app/
+  (public)/
+    page.tsx
+    hotels/
+    rooms/
+    search/
+    checkout/
+    booking/
+    about/
+    gallery/
+    offers/
+    contact/
+    faq/
+    policies/
+  (auth)/
+    login/
+    signup/
+    forgot-password/
+  (customer)/
+    account/
+  (admin)/
+    admin/
+      page.tsx
+      hotels/
+      rooms/
+      inventory/
+      pricing/
+      bookings/
+      guests/
+      payments/
+      reviews/
+      seo/
+      reports/
+      staff/
+      cms/
+      integrations/
+      settings/
+  api/
+    availability/
+    bookings/
+    payments/
+    webhooks/
+    integrations/
+
+components/
+  ui/
+  layout/
+  public/
+  hotels/
+  rooms/
+  booking/
+  pricing/
+  admin/
+  reviews/
+  seo/
+
+lib/
+  supabase/
+  auth/
+  permissions/
+  booking/
+  inventory/
+  pricing/
+  payments/
+  notifications/
+  integrations/
+  seo/
+  validation/
+  utils/
+
+services/
+  hotels/
+  rooms/
+  bookings/
+  pricing/
+  payments/
+  channel-manager/
+  reviews/
+  analytics/
+
+hooks/
+types/
+config/
+supabase/
+  migrations/
+  seed.sql
+tests/
+  unit/
+  integration/
+  e2e/
+public/
+docs/
+
+The exact directory organization may be improved for maintainability.
+
+Keep domain logic outside UI components.
+
+Use shared types and reusable services.
+
+## 27. API REQUIREMENTS
+
+Implement secure, documented endpoints where appropriate.
+
+Examples:
+
+GET /api/hotels
+
+GET /api/hotels/[id]
+
+GET /api/room-types
+
+POST /api/availability/search
+
+POST /api/bookings/quote
+
+POST /api/bookings/hold
+
+POST /api/bookings
+
+GET /api/bookings/[id]
+
+POST /api/bookings/[id]/cancel
+
+POST /api/payments/create-order
+
+POST /api/webhooks/payment
+
+GET /api/admin/bookings
+
+POST /api/admin/rooms
+
+PATCH /api/admin/pricing
+
+POST /api/admin/pricing/bulk-update
+
+GET /api/admin/reports
+
+POST /api/integrations/channel-manager/sync
+
+GET /api/admin/reviews
+
+GET /api/admin/seo/keywords
+
+These are recommended endpoint examples, not a fixed contract.
+
+Validate every request with Zod or equivalent.
+
+Apply authorization to every sensitive operation.
+
+Use consistent structured responses and errors.
+
+## 28. BUSINESS RULES
+
+Implement these important rules:
+
+1. Both hotels exist under one website.
+2. Hotel inventory remains independent.
+3. Hotel pricing remains independent.
+4. Staff access is property-scoped.
+5. Super Admin has authorized group-level access.
+6. Customers can view and reserve eligible rooms.
+7. Prices may vary by date.
+8. Availability must be checked before booking.
+9. All confirmed bookings preserve pricing snapshots.
+10. Failed transactions must not create duplicate confirmed bookings.
+11. Confirmed bookings must not be removed without an auditable cancellation process.
+12. Guests can receive booking notifications.
+13. Admin pricing changes are audited.
+14. Sister properties are recommended when appropriate.
+15. External OTA changes must be reconciled with internal inventory.
+16. Public reviews must originate from genuine authorized sources.
+17. Marketing data must show its origin and freshness.
+18. Search rankings must never be fabricated.
+19. Operational reports must use valid source data.
+20. Client-specific rates, policies and legal details must remain configurable.
+
+## 29. TESTING REQUIREMENTS
+
+Create automated tests.
+
+### Unit Tests
+
+Test:
+
+- Nightly price calculation
+- Weekend pricing
+- Seasonal pricing
+- Discounts
+- Tax calculation
+- Minimum stay validation
+- Date validation
+- Occupancy validation
+- Permission checks
+
+### Integration Tests
+
+Test:
+
+- Availability queries
+- Booking creation
+- Inventory reservation
+- Payment webhook verification
+- Cancellation
+- Refund reconciliation
+- Pricing updates
+- Property isolation
+
+### End-to-End Tests
+
+Test complete customer flows:
+
+1. Open homepage.
+2. Select Flower Inn.
+3. Select dates.
+4. Search rooms.
+5. Select available room.
+6. Enter guest information.
+7. Complete an approved sandbox booking.
+8. Confirm reservation.
+9. Verify admin dashboard update.
+10. Verify inventory reduction.
+
+Repeat for Petal Inn.
+
+### Edge Cases
+
+Test:
+
+- Two users booking the last available room
+- Payment completed but browser closed
+- Duplicate payment webhook
+- Expired booking hold
+- Cancelled reservation
+- Fully booked property
+- Cross-property access attempt
+- Room price changing during checkout
+- Channel manager sync failure
+- Incorrect webhook signature
+- Missing integration credentials
+- Database service interruption
+
+No critical booking or payment path should be left untested.
+
+## 30. DELIVERY TIMELINE
+
+Follow the original SOW's proposed phases.
+
+### Phase 1 — Discovery and Audit
+
+Weeks 1–2
+
+Deliver:
+
+- Confirmed requirements
+- Current reviews audit
+- Google Maps audit
+- Existing website audit
+- Pricing analysis
+- Competitor benchmark
+- Technical architecture
+
+### Phase 2 — Google Maps and Reviews Setup
+
+Weeks 2–4
+
+Deliver:
+
+- Two optimized Google Business Profiles
+- Review request workflows
+- QR codes
+- Messaging templates
+- Review response procedures
+- Initial SEO setup
+
+### Phase 3 — Website and Pricing Build
+
+Weeks 3–10
+
+Deliver:
+
+- Public hotel website
+- Hotel pages
+- Room listing
+- Availability engine
+- Centralized booking flow
+- Admin dashboard
+- Dynamic pricing
+- Approved integrations
+
+### Phase 4 — Launch and Training
+
+Weeks 10–12
+
+Deliver:
+
+- Testing
+- Security checks
+- Production setup
+- Deployment
+- Staff training
+- User guide
+- Website launch
+
+### Phase 5 — Ongoing Optimization
+
+Month 4 onwards
+
+Deliver:
+
+- Monthly performance reports
+- Review management
+- Local SEO improvements
+- Google Maps tracking
+- Pricing optimization
+- Operational improvements
+
+Treat these as SOW target dates, not a guarantee of delivery independent of access, approvals and third-party integrations.
+
+## 31. CLIENT DEPENDENCIES
+
+Identify external items needed for production.
+
+The client must provide:
+
+- Hotel business names
+- Confirmed hotel addresses
+- Hotel descriptions
+- Official logos
+- Real photographs
+- Contact details
+- Room information
+- Room inventory
+- Approved prices
+- Pricing floors and ceilings
+- Cancellation policies
+- Tax/business details
+- Domain and hosting access
+- Google Business Profile access
+- Authorized OTA/channel manager access
+- Approved payment merchant credentials
+- Approved messaging provider
+- Necessary permissions and approvals
+
+The original SOW assigns client responsibility for required assets, access, pricing rules and operational cooperation.
+
+Do not fabricate missing data.
+
+For development, use clearly marked mock hotel data and sample pricing.
+
+Document every unresolved production dependency.
+
+## 32. COMMERCIAL AND SCOPE BOUNDARIES
+
+The original SOW includes:
+
+- One-time website, booking engine and pricing dashboard fee
+- Monthly Google Maps and review management fee
+- Optional add-on services
+- Applicable GST
+
+Original proposed one-time payment milestones:
+
+- 40% advance
+- 30% on design approval
+- 30% on go-live
+
+Monthly reputation and Google Maps management is billed in advance.
+
+Actual commercial amounts are not provided.
+
+Do not invent project fees.
+
+The SOW excludes:
+
+- Paid Google and Meta advertisements
+- Fake or incentivized reviews
+- Hotel renovation and operational changes
+- Photography/videography shoots unless separately approved
+- Third-party software licence fees unless otherwise agreed
+
+Do not quietly include those external expenses as free services.
+
+## 33. IMPLEMENTATION ORDER
+
+Build in a dependency-safe sequence.
+
+### Step 1 — Architecture
+
+Create:
+
+- Application structure
+- Environment configuration
+- Supabase configuration
+- Shared types
+- Validation system
+- Design system
+- Authentication architecture
+
+### Step 2 — Database
+
+Create:
+
+- Tables
+- Relationships
+- Migrations
+- Indexes
+- Constraints
+- RLS policies
+- Initial property seeds
+
+### Step 3 — Public Website
+
+Implement the complete responsive website and hotel content architecture.
+
+### Step 4 — Admin Authentication
+
+Implement secure admin roles and property access.
+
+### Step 5 — Hotel and Room Management
+
+Create operational management modules.
+
+### Step 6 — Pricing and Inventory
+
+Implement dynamic pricing, date inventory and reservation holds.
+
+### Step 7 — Booking Engine
+
+Complete availability, checkout, confirmation, management and cancellation.
+
+### Step 8 — Payment Integrations
+
+Implement verified sandbox workflows and provider abstraction.
+
+### Step 9 — Marketing and SEO Modules
+
+Implement SEO tracking, review operations, CMS and reporting.
+
+### Step 10 — External Integrations
+
+Implement authorized channel manager and messaging integrations.
+
+### Step 11 — Testing and QA
+
+Run automated tests, security verification and complete booking scenarios.
+
+### Step 12 — Production Delivery
+
+Prepare deployment, staff documentation and handover.
+
+## 34. DEVELOPMENT EXECUTION RULES
+
+Follow these requirements strictly:
+
+1. Build actual runnable code.
+2. Do not stop after only creating a design or architecture explanation.
+3. Do not generate disconnected demo pages.
+4. Implement working navigation.
+5. Connect forms to genuine backend operations.
+6. Connect admin data to Supabase.
+7. Use real database queries for inventory and bookings.
+8. Use secure role and property access.
+9. Implement all database migrations.
+10. Include every required dependency.
+11. Use reusable, well-typed components.
+12. Keep UI and business logic separate.
+13. Avoid hardcoded production business values.
+14. Avoid fake production analytics.
+15. Do not assume external credentials exist.
+16. Use sandbox integrations where necessary.
+17. Display meaningful empty, loading and error states.
+18. Use transactional booking operations.
+19. Provide working development scripts.
+20. Fix TypeScript, lint and build errors.
+21. Write meaningful tests.
+22. Document incomplete provider-specific connections.
+23. Do not claim unfinished features are complete.
+24. Keep the architecture suitable for additional hotels.
+25. Do not compromise security for development convenience.
+26. Use realistic but clearly labeled sample data.
+27. Do not leave critical modules as nonfunctional UI buttons.
+28. Preserve the client's original SOW requirements.
+29. Flag recommended extensions separately from mandatory scope.
+30. Continue implementation through the full agreed system, reporting real progress and blockers.
+
+When a business decision is missing, use a safe configurable default and document the assumption instead of silently treating it as a confirmed requirement.
+
+## 35. REQUIRED DELIVERABLES
+
+Provide:
+
+1. Complete Next.js project source
+2. Complete public website
+3. Hotel pages
+4. Working room management
+5. Working availability engine
+6. Transaction-safe booking engine
+7. Dynamic pricing engine
+8. Admin dashboard
+9. Multi-hotel role permissions
+10. Supabase SQL migrations
+11. Secure RLS policies
+12. Supabase Storage configuration
+13. Payment gateway adapter
+14. Booking notifications
+15. Channel manager integration architecture
+16. Google Maps SEO dashboard
+17. Review management workflows
+18. Website content management
+19. Reports and analytics
+20. API implementation and documentation
+21. Automated tests
+22. Example environment file
+23. Database seeding instructions
+24. Deployment instructions
+25. Admin user guide
+26. Architecture documentation
+27. Production readiness checklist
+28. A clear list of items awaiting client approval or external credentials
+
+The application must run locally with documented setup instructions.
+
+## 36. FINAL ACCEPTANCE CRITERIA
+
+The system is ready for acceptance when the following are demonstrably true:
+
+- Both hotel pages function independently.
+- Customers can search both hotels in one booking flow.
+- Room availability is calculated correctly.
+- Double booking is prevented under concurrent requests.
+- Administrators can change daily room prices.
+- The changed price appears in booking quotes correctly.
+- Booking confirmations contain correct stay and payment information.
+- Staff cannot access unauthorized properties.
+- Pricing changes and sensitive actions are audited.
+- Booking cancellation follows configured policy.
+- Sandbox payments can be verified end to end.
+- Hotel and room CMS functions correctly.
+- SEO and review workflows display accurate source/status information.
+- Authorized integrations can be configured and tested.
+- The website works across mobile, tablet and desktop.
+- No critical TypeScript or production build errors remain.
+- Required automated tests pass.
+- Missing client approvals and third-party dependencies are documented clearly.
+
+An integration without credentials or provider authorization must be marked as pending rather than accepted as live.
+
+## 37. EXPECTED FINAL OUTPUT
+
+First, derive a complete implementation-ready technical specification from this prompt and the original SOW.
+
+Then produce:
+
+A. Detailed project architecture  
+B. Confirmed SOW requirements versus proposed assumptions  
+C. Complete page and route inventory  
+D. Complete feature and permission matrix  
+E. Database schema and migration plan  
+F. API and integration contracts  
+G. UI component architecture  
+H. Booking and pricing business logic  
+I. Security and RLS architecture  
+J. Development milestones and task breakdown  
+K. Complete executable source code  
+L. Tests and verification results  
+M. Environment and setup instructions  
+N. Deployment and handover documentation  
+
+Implement the actual application in the connected coding workspace.
+
+Do not merely describe how the system could be built.
+
+The final result should be a professional multi-property hotel booking and management platform for Flower Inn and Petal Inn, aligned with the original SOW and clearly documented wherever additional assumptions were necessary.
+
+**FINAL INSTRUCTION: Build a cohesive, production-oriented system, not a collection of visual prototypes. Every implemented feature must have correct frontend behavior, backend logic, database integration, authorization, validation, error handling and applicable tests.**

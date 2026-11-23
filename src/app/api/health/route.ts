@@ -1,0 +1,2 @@
+import { NextResponse } from 'next/server';
+export function GET(){return NextResponse.json({ok:true,project:'Flower Inn & Petal Inn',mode:'frontend-preview',databaseConnected:false,paymentsConnected:false,otaConnected:false,reviewApiConnected:false,note:'The booking and pricing preview uses browser-local data. This endpoint is not a backend readiness check.'},{headers:{'Cache-Control':'no-store'}})}

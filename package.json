@@ -1,0 +1,34 @@
+{
+  "name": "flower-petal-hotel-platform",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test:logic": "tsc --module commonjs --target ES2022 --moduleResolution node --esModuleInterop --outDir .test-build src/lib/catalog.ts src/lib/dates.ts src/lib/pricing.ts && node tests/pricing.test.cjs"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "i": "^0.3.7",
+    "lucide-react": "^0.468.0",
+    "next": "^16.0.0",
+    "qrcode.react": "^4.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^16.0.0",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
