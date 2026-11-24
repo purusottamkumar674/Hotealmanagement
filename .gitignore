@@ -5,3 +5,9 @@ node_modules
 .vercel
 *.tsbuildinfo
 .DS_Store
+.npm-cache/
+.eslint-results.json
+.db-test-error.txt
+.test-build/
+.test-platform/
+.qa/

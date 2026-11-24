@@ -1,0 +1,331 @@
+"use client";
+import { ImageCover } from "@/components/Cards";
+import { HOTELS, ROOMS, money } from "@/lib/catalog";
+import { dateValidStay, formatDate } from "@/lib/dates";
+import {
+  availableRooms,
+  getDemoState,
+  observeState,
+  submitDemoBooking,
+  type DemoState,
+} from "@/lib/demo-store";
+import { buildQuote } from "@/lib/pricing";
+import {
+  AlertTriangle,
+  CheckCircle2,
+  ChevronRight,
+  CreditCard,
+} from "lucide-react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useMemo, useState } from "react";
+function CheckoutClient() {
+  const p = useSearchParams(),
+    router = useRouter();
+  const roomId = p.get("roomId") || "",
+    checkin = p.get("checkin") || "",
+    checkout = p.get("checkout") || "",
+    rooms = Number(p.get("rooms") || 1),
+    guests = Number(p.get("guests") || 2),
+    room = ROOMS.find((r) => r.id === roomId),
+    hotel = HOTELS.find((h) => h.id === room?.hotelId);
+  const [state, setState] = useState<DemoState | null>(null);
+  const [name, setName] = useState(""),
+    [email, setEmail] = useState(""),
+    [phone, setPhone] = useState(""),
+    [notes, setNotes] = useState(""),
+    [terms, setTerms] = useState(false),
+    [error, setError] = useState(""),
+    [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const refresh = () => setState(getDemoState());
+    refresh();
+    return observeState(refresh);
+  }, []);
+  const valid =
+    !!room &&
+    !!hotel &&
+    dateValidStay(checkin, checkout) &&
+    Number.isInteger(rooms) &&
+    rooms >= 1 &&
+    rooms <= 5 &&
+    Number.isInteger(guests) &&
+    guests >= 1 &&
+    guests <= room.guests * rooms;
+  const quote = useMemo(
+    () =>
+      valid && room && state
+        ? buildQuote(room, checkin, checkout, rooms, state.overrides)
+        : null,
+    [valid, room, state, checkin, checkout, rooms],
+  );
+  const available =
+    valid && room && state
+      ? availableRooms(room, checkin, checkout, state) >= rooms
+      : false;
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!terms) {
+      setError("Please accept the demo booking conditions.");
+      return;
+    }
+    if (!available || !room) {
+      setError("Selected room is not available.");
+      return;
+    }
+    setLoading(true);
+    setError("");
+    try {
+      const result = submitDemoBooking({
+        hotelId: room.hotelId,
+        roomId: room.id,
+        guestName: name,
+        email,
+        phone,
+        checkIn: checkin,
+        checkOut: checkout,
+        rooms,
+        guests,
+        notes,
+      });
+      try {
+        sessionStorage.setItem("fp-last-guest-email", email);
+      } catch {}
+      router.push(
+        `/booking/confirmation/${encodeURIComponent(result.reference)}`,
+      );
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Unable to create demo booking.",
+      );
+      setLoading(false);
+    }
+  };
+  if (!valid || !room || !hotel || !quote || !available)
+    return (
+      <main className="container">
+        <div
+          className="empty-state"
+          style={{ margin: "85px auto", maxWidth: 620 }}
+        >
+          <AlertTriangle size={35} />
+          <h3>This selection is unavailable</h3>
+          <p>Choose another date or room to continue.</p>
+          <Link className="button button-dark" href="/search">
+            Check rooms
+          </Link>
+        </div>
+      </main>
+    );
+  return (
+    <main className="container content-shell">
+      <div className="breadcrumb">
+        <Link href="/">Home</Link>
+        <ChevronRight />
+        <Link href="/search">Availability</Link>
+        <ChevronRight />
+        Checkout
+      </div>
+      <div className="demo-page-head" style={{ padding: "18px 0 20px" }}>
+        <span className="eyebrow with-line">ALMOST THERE</span>
+        <h1 className="serif">Complete your stay</h1>
+        <p>
+          A simple booking preview. This does not reserve a real hotel room or
+          collect any payment.
+        </p>
+      </div>
+      <div className="notice danger">
+        <AlertTriangle size={17} /> Frontend demonstration only. Guest details
+        remain in this browser; no real booking, payment or confirmation email
+        is generated.
+      </div>
+      <div className="checkout-layout">
+        <form onSubmit={submit}>
+          <div className="form-card">
+            <h2>Guest information</h2>
+            <p>
+              Tell us who will be staying. Please use test data for this
+              demonstration.
+            </p>
+            <div className="form-grid">
+              <label className="form-label">
+                Full name *
+                <input
+                  className="form-control"
+                  required
+                  minLength={2}
+                  maxLength={100}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your full name"
+                />
+              </label>
+              <label className="form-label">
+                Email address *
+                <input
+                  className="form-control"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="name@example.com"
+                />
+              </label>
+              <label className="form-label">
+                Mobile number *
+                <input
+                  className="form-control"
+                  type="tel"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="+91 ..."
+                />
+              </label>
+              <label className="form-label">
+                Number of guests
+                <input
+                  className="form-control"
+                  value={`${guests} guest(s) in ${rooms} room(s)`}
+                  readOnly
+                />
+              </label>
+            </div>
+          </div>
+          <div className="form-card">
+            <h2>Anything we should know?</h2>
+            <label className="form-label">
+              Special requests (optional)
+              <textarea
+                maxLength={600}
+                className="form-control"
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                placeholder="Add a note for your stay..."
+              />
+            </label>
+            <p className="form-field-note">
+              This form is a demo. Requests are not delivered to hotel staff.
+            </p>
+          </div>
+          <div className="form-card">
+            <h2>Payment preference</h2>
+            <div className="notice info">
+              <CreditCard size={17} /> Pay at hotel — DEMO ONLY. This prototype
+              does not process payments.
+            </div>
+            <p>
+              Online payment, cancellation and tax rules will be configured when
+              the real hotel merchant account and policies are confirmed.
+            </p>
+            <label className="check-line">
+              <input
+                type="checkbox"
+                checked={terms}
+                onChange={(e) => setTerms(e.target.checked)}
+              />
+              <span>
+                I understand this is a demonstration and no real room will be
+                reserved. I agree to the{" "}
+                <Link
+                  style={{ textDecoration: "underline" }}
+                  href="/terms-and-conditions"
+                >
+                  preview terms
+                </Link>
+                .
+              </span>
+            </label>
+            {error && (
+              <p className="form-error" role="alert">
+                {error}
+              </p>
+            )}
+            <button
+              disabled={loading}
+              type="submit"
+              className="button button-dark"
+              style={{ width: "100%", marginTop: 22 }}
+            >
+              {loading ? "Saving preview booking…" : "Confirm demo booking"}{" "}
+              <CheckCircle2 size={16} />
+            </button>
+          </div>
+        </form>
+        <aside className="summary-card">
+          <div className="summary-photo">
+            <ImageCover
+              src={room.image}
+              alt={`${room.name} illustrative image`}
+            />
+          </div>
+          <span className="eyebrow">YOUR STAY</span>
+          <h2 className="serif" style={{ marginTop: 8 }}>
+            {room.name}
+          </h2>
+          <p>
+            {hotel.name} · {room.bed}
+          </p>
+          <div className="summary-line">
+            <span>Check-in</span>
+            <strong>{formatDate(checkin)}</strong>
+          </div>
+          <div className="summary-line">
+            <span>Check-out</span>
+            <strong>{formatDate(checkout)}</strong>
+          </div>
+          <div className="summary-line">
+            <span>Rooms / guests</span>
+            <strong>
+              {rooms} / {guests}
+            </strong>
+          </div>
+          <hr
+            style={{
+              border: 0,
+              borderTop: "1px solid #dce3d9",
+              margin: "16px 0",
+            }}
+          />
+          {quote.nightly.map((n) => (
+            <div key={n.date} className="summary-line">
+              <span>
+                {formatDate(n.date)} · {rooms} room(s)
+              </span>
+              <strong>{money(n.rate * rooms)}</strong>
+            </div>
+          ))}
+          <div className="summary-line">
+            <span>Discount</span>
+            <strong>{money(0)}</strong>
+          </div>
+          <div className="summary-line">
+            <span>Taxes</span>
+            <strong>Not configured</strong>
+          </div>
+          <div className="summary-line total">
+            <span>Demo subtotal</span>
+            <strong>{money(quote.total)}</strong>
+          </div>
+          <p className="summary-mini">
+            Illustrative subtotal before any applicable real-world taxes or
+            fees.
+          </p>
+        </aside>
+      </div>
+    </main>
+  );
+}
+export default function CheckoutPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="container" style={{ padding: 75 }}>
+          Preparing your checkout…
+        </div>
+      }
+    >
+      <CheckoutClient />
+    </Suspense>
+  );
+}

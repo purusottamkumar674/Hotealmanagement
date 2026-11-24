@@ -1,22 +1,35 @@
-Flower Inn & Petal Inn project validation
-Date: 2026-11-23
+﻿Flower Inn & Petal Inn — local verification
+Date: 24 November 2026 (Asia/Calcutta)
+Environment: Windows PowerShell; Node 24; Next.js 16.4.6.
 
-PASS — TypeScript/TSX source parsed without syntax errors (45 files).
-PASS — Core TypeScript types compiled for catalog, dates, pricing, demo-store and info metadata.
-PASS — 7 pricing and date tests:
- - Check-out date exclusive night counting
- - Weekend uplift
- - Date override precedence
- - Multi-room total calculation
- - Reject invalid stay ranges
- - Invalid ISO date handling
- - Reject excessive room quantities
-PASS — Local '@/...' imports matched existing source modules.
+PASS npm run typecheck — strict TypeScript check.
+PASS npm run lint — ESLint, no errors or warnings.
+PASS npm test — 60 automated checks:
+  7 legacy demo pricing/date checks (explicit demo only).
+  15 schema, role/property, BHK, money, date, policy, link, upload and CSV checks.
+  24 actual embedded PostgreSQL migration/RLS/rate/booking/inventory/approval/SEO checks.
+  6 DOM component checks: 5 carousel interactions and 1 BHK guest-search regression.
+  8 pre-render authentication/refresh/forged-token checks with mocked Auth responses.
+PASS npm run build — optimized Next.js production build, dynamic business pages/API/sitemap and pre-render proxy.
+PASS npm run test:http — 27 production HTTP smoke checks in missing-configuration/live-default mode.
+  Includes public/policy routes, direct staff redirect, unauthenticated API denials,
+  cross-origin write rejection, private booking access, security headers,
+  unavailable-integration health responses and no fallback sample prices/photos.
+PASS all three SQL migrations applied to fresh embedded PostgreSQL fixtures.
+PASS git diff --check — no whitespace errors.
 
-NOT RUN — Full Next.js 'npm run build', ESLint, server/browser UAT.
-REASON — npm registry DNS was unavailable from the artifact creation runtime, so the required
-Next.js/React packages could not be installed. On a networked machine, run npm install,
-npm run typecheck, npm run lint, npm run test:logic and npm run build.
+NOT VERIFIED / NOT DEPLOYED:
+- No real Supabase credentials or hosting target were available; no remote migration or deployment was performed.
+- PGlite executes actual PostgreSQL functions/policies, but its single backend serializes clients.
+  A concurrent-submission test passes; cross-connection locking/load behavior still requires a real staging database.
+- Auth and Storage infrastructure are test fixtures; hosted GoTrue, PostgREST embeddings,
+  Storage upload/replacement/deletion, and real account sessions still require staging UAT.
+- Browser skill bootstrap failed with 'Cannot redefine property: process'. No visual screenshot,
+  mobile browser, screen-reader, Lighthouse or Core Web Vitals verification is claimed.
+- Official hotel images/logos, actual addresses/coordinates/facilities/inventory/rates,
+  legal policies and tax/payment approvals were not supplied and were not fabricated.
+- Online payment/refund, email/SMS, OTA/channel-manager and Google Business API connections are unavailable.
 
-NO LIVE SERVICES — Supabase/Google/payment/channel manager credentials were not supplied;
-all external integration screens are labeled not connected.
+The existing demo store was not deleted or imported as production data.
+The temporary production HTTP test server is started/stopped by the test harness.
+Run npm run build before npm run test:http. Configure only staging credentials for hosted acceptance.

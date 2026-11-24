@@ -1,11 +1,6 @@
-'use client';
-import { useState } from 'react';
-import Link from 'next/link';
-import { Search, ArrowRight, Info, CalendarDays } from 'lucide-react';
-import { getDemoState, type DemoBooking } from '@/lib/demo-store';
-import { HOTELS, ROOMS, money } from '@/lib/catalog';
-import { formatDate } from '@/lib/dates';
-export default function ManageBooking(){const [ref,setRef]=useState(''),[email,setEmail]=useState(''),[searched,setSearched]=useState(false),[booking,setBooking]=useState<DemoBooking|null>(null);
- const search=(e:React.FormEvent)=>{e.preventDefault();const match=getDemoState().bookings.find(b=>b.reference.toLowerCase()===ref.trim().toLowerCase() && b.email.toLowerCase()===email.trim().toLowerCase() && !b.isSample);setBooking(match||null);setSearched(true)};
- return <main className="container" style={{minHeight:'65vh'}}><div className="demo-page-head"><span className="eyebrow with-line">YOUR RESERVATIONS</span><h1 className="serif">Manage a demo booking</h1><p>Retrieve a test reservation in this browser by its reference and the email used during the preview checkout. This is not a live hotel booking service.</p></div><div className="notice info"><Info size={17}/> For production, booking retrieval requires secure server-side identity verification. Here, data is stored only in your browser.</div><div className="admin-card" style={{maxWidth:580,margin:'34px 0 90px'}}><h2 className="serif" style={{fontSize:25,fontWeight:400}}>Find your reservation</h2><form onSubmit={search} className="form-grid one"><label className="form-label">Demo booking reference<input className="form-control" placeholder="DEMO-..." required value={ref} onChange={e=>setRef(e.target.value)}/></label><label className="form-label">Email used at checkout<input type="email" className="form-control" required placeholder="name@example.com" value={email} onChange={e=>setEmail(e.target.value)}/></label><button className="button button-dark" type="submit"><Search size={16}/> Find demo booking</button></form>{searched&&(booking?<div style={{marginTop:24,padding:17,background:'#f5f7f2'}}><strong>{HOTELS.find(h=>h.id===booking.hotelId)?.name} · {ROOMS.find(r=>r.id===booking.roomId)?.name}</strong><p className="muted">{formatDate(booking.checkIn)} — {formatDate(booking.checkOut)} · {booking.status} · {money(booking.total)} (sample)</p><Link className="text-link" href={`/booking/confirmation/${encodeURIComponent(booking.reference)}`}>View summary <ArrowRight size={15}/></Link></div>:<p role="alert" className="form-error" style={{marginTop:15}}>No matching demo booking found in this browser.</p>)}</div></main>;
+import DemoManage from "@/components/DemoManage";
+import { LiveManage } from "@/components/LiveBooking";
+import { demoMode } from "@/lib/platform";
+export default function ManagePage() {
+  return demoMode ? <DemoManage /> : <LiveManage />;
 }

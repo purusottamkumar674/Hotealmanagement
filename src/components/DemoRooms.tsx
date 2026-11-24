@@ -1,0 +1,101 @@
+"use client";
+import { ImageCover, RoomCard } from "@/components/Cards";
+import { HOTELS, PHOTOS, ROOMS } from "@/lib/catalog";
+import { ChevronRight, SlidersHorizontal } from "lucide-react";
+import Link from "next/link";
+import { useMemo, useState } from "react";
+export default function RoomsPage() {
+  const [hotel, setHotel] = useState("all");
+  const [sort, setSort] = useState("recommended");
+  const [capacity, setCapacity] = useState("all");
+  const rooms = useMemo(
+    () =>
+      ROOMS.filter(
+        (r) =>
+          (hotel === "all" || r.hotelId === hotel) &&
+          (capacity === "all" || r.guests >= Number(capacity)),
+      ).sort((a, b) =>
+        sort === "low"
+          ? a.baseRate - b.baseRate
+          : sort === "high"
+            ? b.baseRate - a.baseRate
+            : a.id.localeCompare(b.id),
+      ),
+    [hotel, sort, capacity],
+  );
+  return (
+    <main>
+      <section className="page-hero">
+        <ImageCover src={PHOTOS.room2} alt="Illustrative hotel room" />
+        <div className="container page-hero-inner">
+          <p className="eyebrow">YOUR PERFECT RETREAT</p>
+          <h1 className="serif">Rooms & suites</h1>
+          <p>
+            Spaces that invite you to unwind. Find the room that feels just
+            right.
+          </p>
+        </div>
+      </section>
+      <div className="container">
+        <div className="breadcrumb">
+          <Link href="/">Home</Link>
+          <ChevronRight />
+          Rooms & suites
+        </div>
+        <div className="intro-wide">
+          <div>
+            <span className="eyebrow with-line">A PLACE OF YOUR OWN</span>
+            <h2 className="serif">
+              Choose your <em>comfort.</em>
+            </h2>
+          </div>
+          <p>
+            Thoughtfully designed spaces across two hotels. Room details,
+            amenities, availability and prices are sample data for this frontend
+            demonstration.
+          </p>
+        </div>
+        <div className="filter-bar">
+          <SlidersHorizontal size={18} color="#b79a6e" />
+          <select
+            value={hotel}
+            onChange={(e) => setHotel(e.target.value)}
+            aria-label="Filter hotel"
+          >
+            <option value="all">All properties</option>
+            {HOTELS.map((h) => (
+              <option key={h.id} value={h.id}>
+                {h.name}
+              </option>
+            ))}
+          </select>
+          <select
+            value={capacity}
+            onChange={(e) => setCapacity(e.target.value)}
+            aria-label="Minimum room capacity"
+          >
+            <option value="all">Any capacity</option>
+            <option value="2">2+ guests</option>
+            <option value="3">3+ guests</option>
+            <option value="4">4 guests</option>
+          </select>
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
+            aria-label="Sort rooms"
+          >
+            <option value="recommended">Recommended</option>
+            <option value="low">Price: low to high</option>
+            <option value="high">Price: high to low</option>
+          </select>
+          <span className="filter-count">{rooms.length} room types</span>
+        </div>
+        <div className="list-rooms">
+          {rooms.map((r) => (
+            <RoomCard key={r.id} room={r} />
+          ))}
+        </div>
+      </div>
+    </main>
+  );
+}

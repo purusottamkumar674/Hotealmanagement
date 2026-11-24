@@ -1,3 +1,27 @@
-import Link from 'next/link';
-import { UserRound, ShieldCheck } from 'lucide-react';
-export default function ProfilePage(){return <main className="container"><div className="demo-page-head"><span className="eyebrow with-line">YOUR ACCOUNT</span><h1 className="serif">Profile preview</h1><p>The production profile page will use verified Supabase Auth sessions. No customer data is stored on the server in this prototype.</p></div><div className="empty-state" style={{maxWidth:700,margin:'25px auto 120px'}}><UserRound size={35}/><h3>Customer account coming with backend setup</h3><p>Secure sign-in, profile updates and verified booking history require configured authentication.</p><Link href="/account/bookings" className="button button-dark">View browser demo bookings</Link></div></main>}
+import { demoMode } from "@/lib/platform";
+import DemoProfile from "@/components/DemoProfile";
+import Link from "next/link";
+export default function Profile() {
+  return demoMode ? (
+    <DemoProfile />
+  ) : (
+    <main className="container content-shell">
+      <section className="section">
+        <h1 className="serif">Guest information</h1>
+        <p>
+          Your contact details are stored with your reservation. To review a
+          reservation or request a correction, use your private booking access
+          or contact the property.
+        </p>
+        <div className="property-actions">
+          <Link className="button button-dark" href="/booking/manage">
+            Manage reservation
+          </Link>
+          <Link className="button button-outline" href="/contact">
+            Contact the property
+          </Link>
+        </div>
+      </section>
+    </main>
+  );
+}

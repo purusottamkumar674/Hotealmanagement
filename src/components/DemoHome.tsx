@@ -1,0 +1,310 @@
+"use client";
+import {
+  HotelCard,
+  ImageCover,
+  RoomCard,
+  SectionTitle,
+} from "@/components/Cards";
+import { SearchForm } from "@/components/SearchForm";
+import { HOTELS, PHOTOS, ROOMS } from "@/lib/catalog";
+import { getDemoState, observeState } from "@/lib/demo-store";
+import {
+  ArrowUpRight,
+  BedDouble,
+  Clock3,
+  Flower2,
+  Heart,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+export default function HomePage() {
+  const [heading, setHeading] = useState("Where every stay blooms.");
+  const [subtitle, setSubtitle] = useState(
+    "Two distinctive hotels. One seamless way to stay. Discover your kind of comfort at Flower Inn and Petal Inn.",
+  );
+  useEffect(() => {
+    const refresh = () => {
+      const s = getDemoState();
+      setHeading(s.cms["home.heading"] || "Where every stay blooms.");
+      setSubtitle(
+        s.cms["home.subheading"] ||
+          "Two distinctive hotels. One seamless way to stay.",
+      );
+    };
+    refresh();
+    return observeState(refresh);
+  }, []);
+  return (
+    <main>
+      <section className="home-hero">
+        <div className="home-hero-photo">
+          <ImageCover
+            src={PHOTOS.hero}
+            alt="Illustrative luxury hotel terrace with pool"
+          />
+        </div>
+        <div className="home-hero-shade" />
+        <div className="container home-hero-content">
+          <div className="hero-copy">
+            <p className="eyebrow hero-eyebrow">
+              <span className="hero-mini-line" /> THE ART OF FEELING AT HOME
+            </p>
+            <h1 className="serif">
+              {heading === "Where every stay blooms." ? (
+                <>
+                  Where every <em>stay</em>
+                  <br />
+                  blooms.
+                </>
+              ) : (
+                heading
+              )}
+            </h1>
+            <p>{subtitle}</p>
+            <div className="hero-actions">
+              <Link href="/hotels" className="button button-cream">
+                Explore our hotels <ArrowUpRight size={17} />
+              </Link>
+              <span className="hero-divider" />
+              <span className="hero-micro">
+                A COLLECTION OF TWO
+                <br />
+                THOUGHTFUL RETREATS
+              </span>
+            </div>
+          </div>
+          <div className="hero-side-note">
+            <Flower2 size={20} />
+            <span>
+              Stays made for
+              <br />
+              beautiful moments.
+            </span>
+          </div>
+        </div>
+      </section>
+      <div className="container hero-search-overlap">
+        <div className="search-overlap-head">
+          <div>
+            <span className="eyebrow">PLAN YOUR ESCAPE</span>
+            <strong>Find your perfect stay</strong>
+          </div>
+          <span className="tiny-dot" />
+        </div>
+        <SearchForm />
+      </div>
+      <section className="section section-story container">
+        <div className="story-visual">
+          <div className="story-primary">
+            <ImageCover
+              src={PHOTOS.flowerLobby}
+              alt="Sample hotel lobby photo"
+            />
+          </div>
+          <div className="story-secondary">
+            <ImageCover src={PHOTOS.room4} alt="Sample bedroom photo" />
+          </div>
+          <div className="story-seal">
+            <Flower2 size={22} />
+            <span>
+              TWO HOTELS
+              <br />
+              ONE HEART
+            </span>
+          </div>
+        </div>
+        <div className="story-copy">
+          <span className="eyebrow with-line">WELCOME TO THE COLLECTION</span>
+          <h2 className="serif">
+            Good places.
+            <br />
+            <em>Beautiful feelings.</em>
+          </h2>
+          <p>
+            We believe your stay should feel effortless from the very first
+            moment. That’s why we bring together two distinct hotel experiences
+            with one easy way to discover, choose, and unwind.
+          </p>
+          <p>
+            Whether you prefer the quiet charm of Flower Inn or the refined
+            energy of Petal Inn, there’s a space waiting to feel like yours.
+          </p>
+          <Link className="text-link" href="/about">
+            Discover our story <ArrowUpRight size={18} />
+          </Link>
+          <div className="story-metrics">
+            <div>
+              <strong>02</strong>
+              <span>Distinctive hotels</span>
+            </div>
+            <div>
+              <strong>01</strong>
+              <span>Seamless booking flow</span>
+            </div>
+            <div>
+              <strong>∞</strong>
+              <span>Little moments to enjoy</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="section section-hotels">
+        <div className="container">
+          <SectionTitle
+            eyebrow="CHOOSE YOUR STAY"
+            title={
+              <>
+                Two hotels. <em>One feeling.</em>
+              </>
+            }
+            description="Explore our two unique properties and find the stay that feels just right."
+            action="View all hotels"
+            href="/hotels"
+          />
+          <div className="hotels-grid">
+            {HOTELS.map((hotel, i) => (
+              <HotelCard key={hotel.id} hotel={hotel} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="section container">
+        <SectionTitle
+          eyebrow="REST BEAUTIFULLY"
+          title={
+            <>
+              Rooms to <em>come home to.</em>
+            </>
+          }
+          description="A little comfort, a little calm, and the freedom to make each stay your own. All rooms and rates below are illustrative."
+          action="View all rooms"
+          href="/rooms"
+        />
+        <div className="rooms-grid">
+          {[ROOMS[0], ROOMS[3], ROOMS[4]].map((r) => (
+            <RoomCard key={r.id} room={r} />
+          ))}
+        </div>
+      </section>
+      <section className="section experience-section">
+        <div className="container experience-layout">
+          <div className="experience-left">
+            <span className="eyebrow with-line">THE SMALL THINGS MATTER</span>
+            <h2 className="serif">
+              More than a stay.
+              <br />
+              <em>A feeling.</em>
+            </h2>
+            <p>
+              Details create the memories you take home. We&apos;re building a
+              simpler way to enjoy the moments that matter.
+            </p>
+            <div className="experience-items">
+              <div>
+                <span>
+                  <BedDouble size={21} />
+                </span>
+                <div>
+                  <h4>Comfort you can feel</h4>
+                  <p>Inviting rooms designed for unwinding.</p>
+                </div>
+              </div>
+              <div>
+                <span>
+                  <Clock3 size={21} />
+                </span>
+                <div>
+                  <h4>A smoother journey</h4>
+                  <p>Explore, compare and book with ease.</p>
+                </div>
+              </div>
+              <div>
+                <span>
+                  <Heart size={21} />
+                </span>
+                <div>
+                  <h4>Two distinct experiences</h4>
+                  <p>Choose the atmosphere that suits you best.</p>
+                </div>
+              </div>
+            </div>
+            <Link className="button button-dark" href="/amenities">
+              See the experience <ArrowUpRight size={17} />
+            </Link>
+          </div>
+          <div className="experience-visual">
+            <ImageCover src={PHOTOS.room3} alt="Illustrative premium bedroom" />
+            <div className="experience-sticker">
+              <Sparkles size={18} />
+              <span>
+                Made for the
+                <br />
+                <strong>moments that matter</strong>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="offers-banner">
+        <div className="offers-photo">
+          <ImageCover
+            src={PHOTOS.petal}
+            alt="Illustrative hotel poolside getaway"
+          />
+        </div>
+        <div className="offers-overlay" />
+        <div className="container offers-banner-inner">
+          <div>
+            <p className="eyebrow">YOUR NEXT MEMORY IS WAITING</p>
+            <h2 className="serif">
+              Make room for <em>more.</em>
+            </h2>
+            <p>
+              Find your favourite hotel, choose your dates and begin a stay
+              worth remembering.
+            </p>
+          </div>
+          <Link className="button button-cream" href="/search">
+            Explore availability <ArrowUpRight size={17} />
+          </Link>
+        </div>
+      </section>
+      <section className="section container prefooter-section">
+        <div className="eyebrow with-line">A CLOSER LOOK</div>
+        <SectionTitle
+          eyebrow=""
+          title={
+            <>
+              Stories through <em>spaces.</em>
+            </>
+          }
+          description="A glimpse of the warmth and thoughtful design that inspire our collection."
+          action="Explore gallery"
+          href="/gallery"
+        />
+        <div className="gallery-strip">
+          {[
+            PHOTOS.flower,
+            PHOTOS.room5,
+            PHOTOS.restaurant,
+            PHOTOS.petalLobby,
+          ].map((img, i) => (
+            <div key={img}>
+              <ImageCover
+                src={img}
+                alt={`Illustrative hotel gallery image ${i + 1}`}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="notice-inline">
+          <ShieldCheck size={16} /> This is a frontend demonstration. Property
+          information, imagery, availability and prices are illustrative until
+          approved by the hotel owners.
+        </div>
+      </section>
+    </main>
+  );
+}

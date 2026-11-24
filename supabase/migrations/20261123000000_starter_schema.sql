@@ -75,7 +75,7 @@ create index on public.staff_assignments(auth_user_id,hotel_id,active);
 
 create table public.bookings (
  id uuid primary key default gen_random_uuid(),
- reference text unique not null default ('FI-'+upper(encode(gen_random_bytes(9),'hex'))),
+ reference text unique not null default ('FI-'||upper(encode(gen_random_bytes(9),'hex'))),
  hotel_id uuid not null references public.hotels(id),
  guest_user_id uuid references auth.users(id),
  guest_name text not null,

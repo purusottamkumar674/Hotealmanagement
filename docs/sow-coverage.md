@@ -1,21 +1,22 @@
-# Coverage against SOW and Master Prompt
+﻿# SOW and master-prompt coverage
 
-| Original SOW requirement | ZIP status | Gap to production |
-|---|---|---|
-| Unified website for Flower Inn and Petal Inn | Responsive website included | Approved real content, live hosting |
-| Dedicated property pages and cross-property links | Included | Verified property details |
-| Single hotel selector and booking search | Browser-local functional preview | Backend transactional inventory/booking engine |
-| Room galleries and amenities | Included sample content | Real client-supplied media / facilities |
-| Daily prices by room, hotel and date | Browser-local override UI included | Shared database, approval, audit, rules, sync |
-| Weekend/season/events/minimum stay | Weekend example only | Approved advanced rule engine in backend |
-| OTA rate parity | Integration readiness page | Vendor API access, actual implementation and mapping |
-| Google Maps / local SEO | Worklist, SOW targets, placeholders | Live GBP/SEO tasks, actual fieldwork and verification |
-| Review collection and response | Draft worklist, review link and QR preview | Verified review URLs, message provider, authorized APIs |
-| Reporting | Demo bookings and CSV | GA4, GBP, channel manager, verified business reports |
-| Training and go-live | README and handover notes | Production build, UAT, client training |
-| SOW commercials | Documented, no invented amounts | Agreed INR amounts + GST/policy sign-off |
-| Auth and roles (Master Prompt addition) | Role matrix only | Supabase Auth, RLS and secure admin APIs |
-| Payment/refund (Master Prompt addition) | UI preview only | Gateway, webhook/refund lifecycle and merchant account |
-| Customer accounts (Master Prompt addition) | Deliberately disabled | Supabase Auth, identity verification and security |
+Current source upgrade: 24 November 2026. The original frontend preview is preserved only in explicit demo mode. This table replaces the earlier ZIP-only status report.
 
-**SOW scope is broader than software:** Local SEO, rankings and genuine guest review improvement require ongoing operations and cannot be implemented merely by making a website.
+| Requirement                                        | Current implementation                                                                                                                     | External acceptance / dependency                                                                                     |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| Unified Flower Inn and Petal Inn website           | Existing Next.js routes/design retained, with database content paths and independent properties                                            | Approved authentic content and production hosting                                                                    |
+| Separate hotel, room and BHK accommodation details | Existing room model extended for conventional rooms and 1/2/3 BHK apartments; property/room relationships constrained                      | Actual inventory, capacities, naming and prices                                                                      |
+| Shared search and real booking engine              | Server quotes, locked reservation/inventory transactions, idempotency and immutable booking/policy snapshots                               | Hosted Supabase acceptance and independent-connection race tests                                                     |
+| Daily pricing, bulk edits and rules                | Property/accommodation calendar, inclusive dates, weekday filters, approved weekend/season/event precedence and detailed audit             | Client-approved rates, tax treatment and rule sign-off                                                               |
+| Content, photos and branding                       | Property CMS, official-logo upload/replacement, galleries, FAQ, policies, About, amenities and nearby management                           | Authentic licensed assets and management approval; no fabricated property facts                                      |
+| Google Maps and directions                         | Verified-coordinate/Place-ID embeds, map and directions links, contact/location sections                                                   | Verified locations; restricted Embed key only when needed for Place-ID mode                                          |
+| Reviews and local SEO                              | Database worklists, manual observations with source evidence, approved review link and QR, local keyword settings                          | Google Business/Profile/Search Console authorization and provider implementation for automation; no ranking promises |
+| Reporting                                          | RLS-scoped reservation, guest, payment and audit views, CSV with formula escaping                                                          | External analytics/OTA/GBP reporting requires approved integrations                                                  |
+| Staff auth and property permissions                | Verified Supabase sessions, pre-render proxy, refresh/logout, group-only staff provisioning and restrictive RLS                            | Real staff account setup and hosted Auth UAT                                                                         |
+| Guest booking access                               | Guest checkout, private reference/access code, cancellation request and preserved historical records                                       | Approved policies and pay-at-property settings; no self-service customer enrollment is advertised                    |
+| Payments, refunds and messaging                    | Confirmed unpaid pay-at-property mode only when approved; honest unavailable states and branded email template                             | Gateway/refund/webhook, sender and SMS providers require credentials and provider-specific implementation/acceptance |
+| OTA parity/channel manager                         | Existing integration scope retained and documented                                                                                         | Vendor selection, authorization, mapping and API implementation remain external                                      |
+| SEO/performance/responsiveness                     | Dynamic database reads, metadata/canonicals, sitemap, verified Hotel schema, optimized/lazy images, accessible controls and reduced motion | Real browser/mobile visual QA and Core Web Vitals measurement still required                                         |
+| Training/go-live                                   | Current README, route/API/migration inventory, audit, test report and deployment checklist                                                 | Client UAT, training and approved production rollout                                                                 |
+
+SOW activities such as genuine reputation improvement, local fieldwork and search rankings need ongoing authorized operations. This source upgrade neither fabricates those outcomes nor contacts review platforms or guests.

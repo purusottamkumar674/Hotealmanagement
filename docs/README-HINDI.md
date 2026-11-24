@@ -1,3 +1,7 @@
+# Current release note
+
+The original preview guide below is historical. For the 24 November 2026 database-backed upgrade, follow the current [README](../README.md), [implementation status](implementation-status.md) and [production checklist](production-checklist.md). Demo mode is now opt-in; production integrations still require configuration.
+
 # Flower Inn और Petal Inn — Next.js Project चलाने का आसान तरीका
 
 आपको इस ZIP में दोनों होटलों की responsive website और admin dashboard का interactive **demo frontend** मिलेगा।

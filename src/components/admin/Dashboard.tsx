@@ -1,12 +1,257 @@
-'use client';
-import Link from 'next/link';
-import { ArrowUpRight, BedDouble, CalendarCheck, Hotel, IndianRupee, Users, TrendingUp, ArrowRight, ShieldCheck, Clock3, Plus } from 'lucide-react';
-import { HOTELS, ROOMS, money } from '@/lib/catalog';
-import { isoToday, formatDate } from '@/lib/dates';
-import { useDemo } from '@/lib/useDemo';
-import { AdminHeader, Pill, DemoNote } from './AdminCommon';
-export function Dashboard(){const state=useDemo();const bookings=state?.bookings||[];const valid=bookings.filter(b=>b.status!=='Cancelled'&&b.status!=='No Show');const active=valid.filter(b=>b.checkIn<=isoToday()&&b.checkOut>isoToday());const upcoming=valid.filter(b=>b.checkIn>=isoToday());const revenue=valid.reduce((sum,b)=>sum+b.total,0);const occupancy=active.reduce((s,b)=>s+b.rooms,0);const inventory=ROOMS.reduce((s,r)=>s+r.inventory,0);
- const values=Array.from({length:7},(_,i)=>({date:isoToday(i),count:valid.filter(b=>b.checkIn<=isoToday(i)&&b.checkOut>isoToday(i)).reduce((sum,b)=>sum+b.rooms,0)}));const max=Math.max(3,...values.map(v=>v.count));
- const cards=[{label:'Properties',value:'02',foot:'Flower Inn + Petal Inn',icon:Hotel},{label:'Total demo bookings',value:String(bookings.length).padStart(2,'0'),foot:`${upcoming.length} upcoming reservations`,icon:CalendarCheck},{label:'Demo revenue subtotal',value:money(revenue),foot:'Illustrative booking totals',icon:IndianRupee},{label:'Rooms occupied today',value:`${occupancy}/${inventory}`,foot:'Across both sample properties',icon:BedDouble}];
- return <><AdminHeader title="Good day, Administrator" subtitle="Here is an overview of your two-property preview workspace." actions={<Link href="/search" className="button button-dark small">Create test booking <Plus size={14}/></Link>}/><DemoNote>All dashboard metrics are calculated from sample bookings and browser-local test data. These figures do not represent actual hotel performance.</DemoNote><div className="admin-kpis">{cards.map(c=><div key={c.label} className="admin-card"><div className="kpi-top"><span>{c.label}</span><span className="kpi-icon"><c.icon size={19}/></span></div><div className="kpi-value">{c.value}</div><div className="kpi-footer">{c.foot}</div></div>)}</div><div className="admin-two-columns"><div className="admin-card"><div className="admin-card-title"><div><h2>Bookings overview</h2><p>Sample inventory usage over the next 7 days</p></div><Link href="/admin/calendar">View calendar <ArrowUpRight size={13}/></Link></div><div className="admin-chart">{values.map(d=><div className="admin-chart-column" key={d.date}><div style={{height:`${Math.max(4,d.count/max*100)}%`}} title={`${d.count} rooms occupied`}/><span>{formatDate(d.date,{day:'numeric',month:'short',timeZone:'UTC'})}</span></div>)}</div><div style={{display:'flex',justifyContent:'space-between',marginTop:15,color:'#829385',fontSize:10}}><span>Demo occupied rooms</span><span>Capacity across both hotels: {inventory}</span></div></div><div className="admin-card"><div className="admin-card-title"><div><h2>Your properties</h2><p>Both hotels in one workspace</p></div><Link href="/admin/hotels">Manage <ArrowUpRight size={13}/></Link></div>{HOTELS.map(h=><div key={h.id} style={{display:'flex',gap:13,alignItems:'center',padding:'13px 0',borderBottom:'1px solid #ecf0e9'}}><div style={{width:45,height:45,background:'#e5ebe4',display:'grid',placeItems:'center',color:'#608169'}}><Hotel size={22}/></div><div style={{flex:1}}><strong style={{fontSize:12}}>{h.name}</strong><p style={{fontSize:10,color:'#9bab9d',margin:'4px 0'}}>{ROOMS.filter(r=>r.hotelId===h.id).reduce((s,r)=>s+r.inventory,0)} sample room units · 3 types</p></div><Link href={`/hotels/${h.id}`} aria-label={`View ${h.name}`}><ArrowUpRight size={15}/></Link></div>)}<div className="notice info" style={{marginTop:18,fontSize:10}}><ShieldCheck size={14}/> Connect authentication + database before real operations.</div></div></div><div style={{marginTop:17}} className="admin-two-columns"><div className="admin-card"><div className="admin-card-title"><div><h2>Recent reservations</h2><p>Includes seeded preview data</p></div><Link href="/admin/bookings">All bookings <ArrowUpRight size={13}/></Link></div><div className="admin-table-wrap"><table className="admin-table"><thead><tr><th>Reference</th><th>Guest</th><th>Property</th><th>Check-in</th><th>Status</th></tr></thead><tbody>{bookings.slice(0,6).map(b=><tr key={b.reference}><td><strong>{b.reference}</strong></td><td>{b.guestName}</td><td>{HOTELS.find(h=>h.id===b.hotelId)?.name}</td><td>{formatDate(b.checkIn)}</td><td><Pill status={b.status}/></td></tr>)}</tbody></table></div></div><div className="admin-card"><div className="admin-card-title"><div><h2>Workspace activity</h2><p>Your latest demo changes</p></div><Link href="/admin/audit-logs">Activity log <ArrowUpRight size={13}/></Link></div>{state?.audit.length?state.audit.slice(0,6).map(a=><div className="activity-row" key={a.id}><div className="activity-dot"/><div><strong>{a.action}</strong><p>{a.detail}</p><p>{new Date(a.at).toLocaleString('en-IN')}</p></div></div>):<div className="admin-empty">No edits yet. Try changing rates or creating a test booking.</div>}</div></div></>;
+"use client";
+import { HOTELS, ROOMS, money } from "@/lib/catalog";
+import { formatDate, isoToday } from "@/lib/dates";
+import { useDemo } from "@/lib/useDemo";
+import {
+  ArrowUpRight,
+  BedDouble,
+  CalendarCheck,
+  Hotel,
+  IndianRupee,
+  Plus,
+  ShieldCheck,
+} from "lucide-react";
+import Link from "next/link";
+import { AdminHeader, DemoNote, Pill } from "./AdminCommon";
+export function Dashboard() {
+  const state = useDemo();
+  const bookings = state?.bookings || [];
+  const valid = bookings.filter(
+    (b) => b.status !== "Cancelled" && b.status !== "No Show",
+  );
+  const active = valid.filter(
+    (b) => b.checkIn <= isoToday() && b.checkOut > isoToday(),
+  );
+  const upcoming = valid.filter((b) => b.checkIn >= isoToday());
+  const revenue = valid.reduce((sum, b) => sum + b.total, 0);
+  const occupancy = active.reduce((s, b) => s + b.rooms, 0);
+  const inventory = ROOMS.reduce((s, r) => s + r.inventory, 0);
+  const values = Array.from({ length: 7 }, (_, i) => ({
+    date: isoToday(i),
+    count: valid
+      .filter((b) => b.checkIn <= isoToday(i) && b.checkOut > isoToday(i))
+      .reduce((sum, b) => sum + b.rooms, 0),
+  }));
+  const max = Math.max(3, ...values.map((v) => v.count));
+  const cards = [
+    {
+      label: "Properties",
+      value: "02",
+      foot: "Flower Inn + Petal Inn",
+      icon: Hotel,
+    },
+    {
+      label: "Total demo bookings",
+      value: String(bookings.length).padStart(2, "0"),
+      foot: `${upcoming.length} upcoming reservations`,
+      icon: CalendarCheck,
+    },
+    {
+      label: "Demo revenue subtotal",
+      value: money(revenue),
+      foot: "Illustrative booking totals",
+      icon: IndianRupee,
+    },
+    {
+      label: "Rooms occupied today",
+      value: `${occupancy}/${inventory}`,
+      foot: "Across both sample properties",
+      icon: BedDouble,
+    },
+  ];
+  return (
+    <>
+      <AdminHeader
+        title="Good day, Administrator"
+        subtitle="Here is an overview of your two-property preview workspace."
+        actions={
+          <Link href="/search" className="button button-dark small">
+            Create test booking <Plus size={14} />
+          </Link>
+        }
+      />
+      <DemoNote>
+        All dashboard metrics are calculated from sample bookings and
+        browser-local test data. These figures do not represent actual hotel
+        performance.
+      </DemoNote>
+      <div className="admin-kpis">
+        {cards.map((c) => (
+          <div key={c.label} className="admin-card">
+            <div className="kpi-top">
+              <span>{c.label}</span>
+              <span className="kpi-icon">
+                <c.icon size={19} />
+              </span>
+            </div>
+            <div className="kpi-value">{c.value}</div>
+            <div className="kpi-footer">{c.foot}</div>
+          </div>
+        ))}
+      </div>
+      <div className="admin-two-columns">
+        <div className="admin-card">
+          <div className="admin-card-title">
+            <div>
+              <h2>Bookings overview</h2>
+              <p>Sample inventory usage over the next 7 days</p>
+            </div>
+            <Link href="/admin/calendar">
+              View calendar <ArrowUpRight size={13} />
+            </Link>
+          </div>
+          <div className="admin-chart">
+            {values.map((d) => (
+              <div className="admin-chart-column" key={d.date}>
+                <div
+                  style={{ height: `${Math.max(4, (d.count / max) * 100)}%` }}
+                  title={`${d.count} rooms occupied`}
+                />
+                <span>
+                  {formatDate(d.date, {
+                    day: "numeric",
+                    month: "short",
+                    timeZone: "UTC",
+                  })}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: 15,
+              color: "#829385",
+              fontSize: 10,
+            }}
+          >
+            <span>Demo occupied rooms</span>
+            <span>Capacity across both hotels: {inventory}</span>
+          </div>
+        </div>
+        <div className="admin-card">
+          <div className="admin-card-title">
+            <div>
+              <h2>Your properties</h2>
+              <p>Both hotels in one workspace</p>
+            </div>
+            <Link href="/admin/hotels">
+              Manage <ArrowUpRight size={13} />
+            </Link>
+          </div>
+          {HOTELS.map((h) => (
+            <div
+              key={h.id}
+              style={{
+                display: "flex",
+                gap: 13,
+                alignItems: "center",
+                padding: "13px 0",
+                borderBottom: "1px solid #ecf0e9",
+              }}
+            >
+              <div
+                style={{
+                  width: 45,
+                  height: 45,
+                  background: "#e5ebe4",
+                  display: "grid",
+                  placeItems: "center",
+                  color: "#608169",
+                }}
+              >
+                <Hotel size={22} />
+              </div>
+              <div style={{ flex: 1 }}>
+                <strong style={{ fontSize: 12 }}>{h.name}</strong>
+                <p style={{ fontSize: 10, color: "#9bab9d", margin: "4px 0" }}>
+                  {ROOMS.filter((r) => r.hotelId === h.id).reduce(
+                    (s, r) => s + r.inventory,
+                    0,
+                  )}{" "}
+                  sample room units · 3 types
+                </p>
+              </div>
+              <Link href={`/hotels/${h.id}`} aria-label={`View ${h.name}`}>
+                <ArrowUpRight size={15} />
+              </Link>
+            </div>
+          ))}
+          <div className="notice info" style={{ marginTop: 18, fontSize: 10 }}>
+            <ShieldCheck size={14} /> Connect authentication + database before
+            real operations.
+          </div>
+        </div>
+      </div>
+      <div style={{ marginTop: 17 }} className="admin-two-columns">
+        <div className="admin-card">
+          <div className="admin-card-title">
+            <div>
+              <h2>Recent reservations</h2>
+              <p>Includes seeded preview data</p>
+            </div>
+            <Link href="/admin/bookings">
+              All bookings <ArrowUpRight size={13} />
+            </Link>
+          </div>
+          <div className="admin-table-wrap">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>Reference</th>
+                  <th>Guest</th>
+                  <th>Property</th>
+                  <th>Check-in</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bookings.slice(0, 6).map((b) => (
+                  <tr key={b.reference}>
+                    <td>
+                      <strong>{b.reference}</strong>
+                    </td>
+                    <td>{b.guestName}</td>
+                    <td>{HOTELS.find((h) => h.id === b.hotelId)?.name}</td>
+                    <td>{formatDate(b.checkIn)}</td>
+                    <td>
+                      <Pill status={b.status} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="admin-card">
+          <div className="admin-card-title">
+            <div>
+              <h2>Workspace activity</h2>
+              <p>Your latest demo changes</p>
+            </div>
+            <Link href="/admin/audit-logs">
+              Activity log <ArrowUpRight size={13} />
+            </Link>
+          </div>
+          {state?.audit.length ? (
+            state.audit.slice(0, 6).map((a) => (
+              <div className="activity-row" key={a.id}>
+                <div className="activity-dot" />
+                <div>
+                  <strong>{a.action}</strong>
+                  <p>{a.detail}</p>
+                  <p>{new Date(a.at).toLocaleString("en-IN")}</p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="admin-empty">
+              No edits yet. Try changing rates or creating a test booking.
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  );
 }

@@ -8,7 +8,14 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test:logic": "tsc --module commonjs --target ES2022 --moduleResolution node --esModuleInterop --outDir .test-build src/lib/catalog.ts src/lib/dates.ts src/lib/pricing.ts && node tests/pricing.test.cjs"
+    "test:logic": "tsc --module commonjs --target ES2022 --moduleResolution node --esModuleInterop --outDir .test-build src/lib/catalog.ts src/lib/dates.ts src/lib/pricing.ts && node tests/pricing.test.cjs",
+    "test:db": "node tests/database.test.mjs",
+    "test:platform": "tsc --module commonjs --target ES2022 --moduleResolution node --esModuleInterop --skipLibCheck --outDir .test-platform src/lib/platform.ts src/lib/csv.ts && node tests/platform.test.cjs",
+    "test": "npm run test:logic && npm run test:platform && npm run test:db && npm run test:components && npm run test:auth",
+    "test:components": "node --import tsx --test tests/carousel.test.mjs tests/search.test.mjs tests/header.test.mjs",
+    "format": "prettier --write src tests docs README.md package.json next.config.ts eslint.config.mjs",
+    "test:auth": "node --import tsx --test tests/auth.test.mjs",
+    "test:http": "node tests/run-http-smoke.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -21,11 +28,15 @@
     "zod": "^4.0.0"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.6.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "eslint": "^9.0.0",
     "eslint-config-next": "^16.0.0",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.10.1",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.0"
   },
   "engines": {
