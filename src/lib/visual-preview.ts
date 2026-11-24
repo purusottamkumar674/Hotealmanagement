@@ -188,7 +188,7 @@ export const planningFaqs = [
 ];
 
 // Client-supplied Flower Inn photography; keep Petal Inn imagery separate.
-const uploadedPhotos: GalleryPhoto[] = [
+export const uploadedPhotos: GalleryPhoto[] = [
   ["img", "Flower Inn exterior and entrance", "exterior"],
   ["img8", "Flower Inn reception desk", "reception"],
   ["img1", "Double guest room with seating", "rooms"],
@@ -198,6 +198,12 @@ const uploadedPhotos: GalleryPhoto[] = [
   ["img5", "Covered hotel parking area", "facilities"],
   ["img6", "Flower and foliage close-up", "details"],
   ["img7", "Hibiscus flower close-up", "details"],
+  ["img9", "Guest room with blue bedding and seating", "rooms"],
+  ["img10", "Guest bedroom with armchairs and a glass table", "rooms"],
+  ["img11", "Lift landing and guest room entrance", "facilities"],
+  ["img12", "Reception counter and waiting area", "reception"],
+  ["img14", "Breakfast tray with tea and accompaniments", "dining"],
+  ["img15", "Glass entrance to the hotel lobby", "entrance"],
 ].map(([name, alt, category]) => ({
   id: "uploaded-" + name,
   src: "/images/" + name + ".png",

@@ -21,7 +21,7 @@ const trusted = (src: string) => {
   }
 };
 const stock = (src: string) =>
-  !/^\/images\/img[1-8]?\.png$/.test(src) &&
+  !/^\/images\/img\d*\.png$/.test(src) &&
   ((src.startsWith("/images/") && !src.startsWith("/images/official/")) ||
     src.includes("images.unsplash.com"));
 export function imageCandidates(

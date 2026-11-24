@@ -3261,3 +3261,18 @@ body {
     max-width: 52px !important;
   }
 }
+
+.floral-collection-heading { max-width: 620px; margin-bottom: 28px; }
+.floral-collection-heading h2 { font-size: clamp(32px, 4vw, 52px); line-height: 1.15; margin: 14px 0; }
+.floral-collection-heading p { color: var(--muted); line-height: 1.7; }
+.floral-collection-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+.floral-collection-photo { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 16px; background: #e8eddf; }
+.floral-collection-photo:nth-child(even) { margin-top: 28px; }
+@media (max-width: 1000px) {
+  .floral-collection-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .floral-collection-photo:nth-child(even) { margin-top: 0; }
+}
+@media (max-width: 600px) {
+  .floral-collection-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .floral-collection-photo:last-child { grid-column: 1 / -1; aspect-ratio: 2 / 1; }
+}

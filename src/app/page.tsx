@@ -1,4 +1,5 @@
-﻿import {
+import { FloralCollection } from "@/components/FloralCollection";
+import {
   HotelCard,
   RoomCard,
   SectionTitle,
@@ -221,6 +222,7 @@ export default async function HomePage() {
           </Link>
         </div>
       </section>
+      <FloralCollection />
       <GuestStories />
       <FaqSection data={data} />
       <section className="contact-collection">

@@ -2,6 +2,7 @@ import "server-only";
 import { completeSlides } from "../photo-slides";
 import { catalog } from "./catalog";
 import {
+  uploadedPhotos,
   previewHotels,
   previewRooms,
   previewPhotos,
@@ -42,11 +43,18 @@ export async function visualCatalog() {
         category: m.category,
         preview: false,
       }));
-    return real.length
-      ? real
-      : enabled(h.id)
-        ? previewPhotos.filter((p) => p.hotelId === h.id)
-        : [];
+    const local = uploadedPhotos.filter((p) => p.hotelId === h.id);
+    const candidates = [
+      ...real,
+      ...local,
+      ...(real.length || !enabled(h.id)
+        ? []
+        : previewPhotos.filter((p) => p.hotelId === h.id)),
+    ];
+    return candidates.filter(
+      (photo, index) =>
+        candidates.findIndex((p) => p.src === photo.src) === index,
+    );
   });
   return {
     ...data,
