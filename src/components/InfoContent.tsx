@@ -218,10 +218,10 @@ export function InfoContent({ slug }: { slug: string }) {
         <div className="section-story" style={{ paddingTop: 50 }}>
           <div className="story-visual">
             <div className="story-primary">
-              <ImageCover src={PHOTOS.flowerLobby} alt="Illustrative lobby" />
+              <ImageCover src={PHOTOS.flowerLobby} alt="Reception and lobby" />
             </div>
             <div className="story-secondary">
-              <ImageCover src={PHOTOS.petalLobby} alt="Illustrative lobby" />
+              <ImageCover src={PHOTOS.petalLobby} alt="Reception and lobby" />
             </div>
             <div className="story-seal">
               <Flower2 size={20} />
@@ -283,9 +283,7 @@ export function InfoContent({ slug }: { slug: string }) {
             </h2>
           </div>
           <p>
-            These photographs are stock/illustrative inspiration, not verified
-            photos of Flower Inn or Petal Inn. Replace them with licensed
-            property-specific photography before launch.
+            Browse the real property photographs supplied for the collection.
           </p>
         </div>
         <div className="gallery-page-grid">
@@ -302,7 +300,7 @@ export function InfoContent({ slug }: { slug: string }) {
             <div key={i}>
               <ImageCover
                 src={src}
-                alt={`Illustrative hospitality photo ${i + 1}`}
+                alt={`Property photo ${i + 1}`}
               />
             </div>
           ))}

@@ -3276,3 +3276,29 @@ body {
   .floral-collection-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .floral-collection-photo:last-child { grid-column: 1 / -1; aspect-ratio: 2 / 1; }
 }
+
+/* Floral accents frame the content without covering links or copy. */
+.flower-decorated { position: relative; isolation: isolate; }
+.flower-accent { position: absolute; width: 150px; height: 190px; pointer-events: none; z-index: -1; color: #b48b59; top: 28px; }
+.flower-accent-left { left: -55px; transform: rotate(-22deg); }
+.flower-accent-right { right: 0; transform: rotate(20deg); }
+.flower-accent-halo { position: absolute; inset: 12px; border-radius: 50%; background: radial-gradient(ellipse, #e5b9ab35, transparent 70%); }
+.flower-accent-bloom { position: absolute; width: 105px; height: 105px; top: 5px; left: 15px; opacity: .35; }
+.flower-accent-bud { position: absolute; width: 51px; height: 51px; top: 87px; left: 76px; color: #bb7d83; opacity: .4; }
+.flower-accent-leaf { position: absolute; width: 80px; height: 80px; top: 98px; left: 5px; color: #728d6d; opacity: .35; }
+@keyframes hotel-photo-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@media (prefers-reduced-motion: no-preference) {
+  .story-primary, .story-secondary, .floral-collection-photo { animation: hotel-photo-float 6s ease-in-out infinite; }
+  .story-secondary, .floral-collection-photo:nth-child(even) { animation-delay: -3s; }
+  .floral-collection-photo:nth-child(3n) { animation-delay: -1.5s; }
+  .flower-accent-bloom { animation: hotel-photo-float 8s ease-in-out infinite; }
+  .hotel-card-photo img, .room-card-photo img, .editorial-photo img, .floral-collection-photo img, .story-visual img { transition: transform .65s ease; }
+  .hotel-card-photo:hover img, .room-card-photo:hover img, .editorial-photo:hover img, .floral-collection-photo:hover img, .story-visual .image-cover:hover img { transform: scale(1.035); }
+}
+@media (max-width: 780px) {
+  .flower-accent { width: 95px; height: 130px; top: 10px; }
+  .flower-accent-left { left: 0; }
+  .flower-accent-bloom { width: 70px; height: 70px; left: 0; opacity: .22; }
+  .flower-accent-bud { width: 32px; height: 32px; left: 55px; top: 65px; }
+  .flower-accent-leaf { width: 50px; height: 50px; top: 70px; }
+}

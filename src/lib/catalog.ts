@@ -40,13 +40,13 @@ export type Room = {
   preview?: boolean;
   samplesEnabled?: boolean;
 };
-// Licensed local samples; provenance is recorded in public/images/credits.json.
+// Client-supplied photographs from img.png through img15.png.
 export const PHOTOS = {
- hero:'/images/hotels/flower-inn/hero-1.webp',flower:'/images/hotels/flower-inn/exterior.webp',petal:'/images/hotels/petal-inn/exterior.webp',
- flowerLobby:'/images/hotels/flower-inn/reception.webp',flowerPool:'/images/hotels/flower-inn/room-2.webp',petalLobby:'/images/hotels/petal-inn/reception.webp',
- restaurant:'/images/common/dining.webp',breakfast:'/images/common/dining.webp',spa:'/images/common/gallery-placeholder.webp',
- room1:'/images/hotels/flower-inn/room-1.webp',room2:'/images/hotels/flower-inn/room-2.webp',room3:'/images/accommodations/one-bhk.webp',
- room4:'/images/hotels/petal-inn/room-1.webp',room5:'/images/accommodations/deluxe-room.webp',room6:'/images/hotels/petal-inn/room-2.webp',
+ hero:'/images/img1.png',flower:'/images/img.png',petal:'/images/img15.png',
+ flowerLobby:'/images/img8.png',flowerPool:'/images/img2.png',petalLobby:'/images/img12.png',
+ restaurant:'/images/img14.png',breakfast:'/images/img14.png',spa:'/images/img4.png',
+ room1:'/images/img1.png',room2:'/images/img2.png',room3:'/images/img2.png',
+ room4:'/images/img9.png',room5:'/images/img1.png',room6:'/images/img10.png',
 };
 export const HOTELS: Hotel[] = [
   {

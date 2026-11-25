@@ -16,7 +16,7 @@ import { BrandLogo } from "./BrandLogo";
 
 const NAV = [
   { href: "/", label: "Home" },
-  { href: "/rooms", label: "Rooms & Apartments" },
+  { href: "/rooms", label: "Rooms" },
   { href: "/amenities", label: "Amenities" },
   { href: "/gallery", label: "Gallery" },
   { href: "/about", label: "About Us" },

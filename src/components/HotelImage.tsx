@@ -38,7 +38,7 @@ export function imageCandidates(
           ? [
               fallback,
               hotelId ? localPhoto(hotelId) : null,
-              "/images/common/hotel-placeholder.webp",
+              "/images/img.png",
             ]
           : []),
       ].filter(

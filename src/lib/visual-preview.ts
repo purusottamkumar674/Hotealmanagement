@@ -9,10 +9,19 @@ const flowerPhotos: Record<string, string> = {
   "hero-1": "/images/img1.png",
   "hero-2": "/images/img2.png",
 };
+// Only client-supplied photographs are bundled with the site.
+const collectionPhotos: Record<string, string> = {
+  exterior: "/images/img15.png", reception: "/images/img12.png",
+  "room-1": "/images/img9.png", "room-2": "/images/img10.png",
+  "hero-1": "/images/img9.png", "hero-2": "/images/img10.png",
+};
 export const localPhoto = (hotel = "flower-inn", name = "exterior") =>
-  hotel === "flower-inn" && flowerPhotos[name]
-    ? flowerPhotos[name]
-    : `/images/hotels/${hotel === "petal-inn" ? "petal-inn" : "flower-inn"}/${name}.webp`;
+  (hotel === "petal-inn" ? collectionPhotos[name] : flowerPhotos[name]) || flowerPhotos.exterior;
+const accommodationPhotos: Record<string, string> = {
+  "one-bhk": "/images/img2.png", "two-bhk": "/images/img9.png",
+  "three-bhk": "/images/img10.png", "deluxe-room": "/images/img1.png",
+  "premium-room": "/images/img2.png",
+};
 export type GalleryPhoto = {
   id: string;
   src: string;
@@ -34,21 +43,21 @@ export const flowerListing = {
   source:
     "https://www.google.com/travel/hotels/entity/ChoI8-TWybCWqpHpARoNL2cvMTFzeXN0NDh6NBAB",
   mapsUrl: "https://www.google.com/maps?cid=16799175046952497779",
-  note: "Public Google hotel listing; property identity confirmed by the client. Photography and inventory remain illustrative.",
+  note: "Public Google hotel listing; property identity confirmed by the client. Client-supplied photography; inventory awaits confirmation.",
 };
 export const previewHotels: Hotel[] = ["flower-inn", "petal-inn"].map(
   (id, i) => ({
     id,
     name: i ? "Petal Inn" : "Flower Inn",
     tagline: i
-      ? "Make a little space for yourself."
-      : "A fresh perspective on your next stay.",
+      ? "Plan your stay at Petal Inn."
+      : "Welcome to Flower Inn, Patna.",
     subtitle: i
-      ? "A distinct expression of the collection."
-      : "Your Patna stay, thoughtfully presented.",
+      ? "Explore Petal Inn rooms and hotel details."
+      : "Hotel rooms for your visit to Patna.",
     description: i
-      ? "Explore the Petal Inn collection preview: room and apartment concepts, inviting interiors and a simpler way to plan your stay. Official property details and accommodation availability are awaiting confirmation."
-      : "Explore Flower Inn, identified by the client as Hotel Flowers Inn in Patna. Discover the accommodation collection below; the photographs and unpublished room categories are illustrative while management confirms the final inventory.",
+      ? "Explore Petal Inn room options and plan your visit. Contact the hotel to confirm room details and availability."
+      : "Welcome to Flower Inn in Patna. Browse hotel photographs, explore room options and contact the team to plan your stay.",
     image: localPhoto(id, "exterior"),
     gallery: ["exterior", "reception", "room-1", "room-2"].map((n) =>
       localPhoto(id, n),
@@ -67,28 +76,28 @@ export const previewHotels: Hotel[] = ["flower-inn", "petal-inn"].map(
 const categories = [
   [
     "one-bhk",
-    "1 BHK apartment",
-    "A one-bedroom apartment concept, with room for everyday moments.",
+    "1 BHK room",
+    "Explore this room option and contact the hotel to confirm the layout.",
   ],
   [
     "two-bhk",
-    "2 BHK apartment",
-    "A two-bedroom apartment concept for travellers exploring a little more space.",
+    "2 BHK room",
+    "Planning a stay together? Confirm room arrangements with the hotel.",
   ],
   [
     "three-bhk",
-    "3 BHK apartment",
-    "A three-bedroom apartment concept for planning a shared stay.",
+    "3 BHK room",
+    "Contact the hotel to discuss room arrangements for your group.",
   ],
   [
     "deluxe-room",
     "Deluxe room",
-    "A conventional guest-room concept with a warm, considered atmosphere.",
+    "View our Deluxe room photos and check availability for your stay.",
   ],
   [
     "premium-room",
     "Premium room",
-    "A guest-room concept with a more expansive visual character.",
+    "Explore our Premium room option and confirm details with the hotel.",
   ],
 ];
 export const previewRooms: Room[] = previewHotels.flatMap((h) =>
@@ -98,11 +107,11 @@ export const previewRooms: Room[] = previewHotels.flatMap((h) =>
     hotelName: h.name,
     slug,
     name,
-    subtitle: "Accommodation design preview",
+    subtitle: "Hotel room details",
     description,
-    image: `/images/accommodations/${slug}.webp`,
+    image: accommodationPhotos[slug],
     gallery: [
-      `/images/accommodations/${slug}.webp`,
+      accommodationPhotos[slug],
       localPhoto(h.id, "room-1"),
       localPhoto(h.id, "room-2"),
     ],
@@ -125,7 +134,7 @@ export const previewPhotos: GalleryPhoto[] = previewHotels.flatMap((h) =>
   ].map(([name, category]) => ({
     id: `sample-${h.id}-${name}`,
     src: localPhoto(h.id, name),
-    alt: `Illustrative ${category} photography for the ${h.name} visual preview; not an actual property photograph`,
+    alt: `Client-supplied ${category} photograph`,
     hotelId: h.id,
     hotelName: h.name,
     category,
@@ -136,45 +145,45 @@ export const previewSlides = [
   [
     "flower-inn",
     "hero-1",
-    "A beautiful beginning.",
-    "Explore Flower Inn and Petal Inn, one considered collection.",
+    "Welcome to Flower Inn.",
+    "Explore our hotel rooms and plan your stay.",
   ],
   [
     "petal-inn",
     "hero-1",
-    "A little room to unwind.",
-    "Find inspiration for your next stay in the Petal collection.",
+    "A warm welcome awaits.",
+    "Browse our hotel spaces and contact the team for your stay.",
   ],
   [
     "flower-inn",
     "hero-2",
-    "Slow down. Settle in.",
-    "Browse room and apartment concepts while official inventory is confirmed.",
+    "Explore our hotel room.",
+    "Explore room options and check availability for your dates.",
   ],
   [
     "petal-inn",
     "hero-2",
-    "Make yourself at home.",
-    "A fresh look at the spaces that shape a memorable stay.",
+    "Plan your stay at Petal Inn.",
+    "View hotel rooms and find the details you need before booking.",
   ],
 ].map(([hotel, name, heading, subtitle], i) => ({
   id: `preview-slide-${i}`,
   hotel,
-  image: localPhoto(hotel, name),
+  image: i === 1 ? "/images/img8.png" : localPhoto(hotel, name),
   heading,
   subtitle,
   cta_text: "Book your stay",
   cta_link: `/search?hotel=${hotel}`,
-  alt: "Licensed illustrative hotel photograph, not the actual property",
+  alt: "Client-supplied guest room photograph",
   preview: true,
 }));
 export const planningFaqs = [
   [
     "Are these photographs of the properties?",
-    "Photographs marked “Illustrative photo” are licensed design-preview images. Published official uploads replace them when available.",
+    "The website uses the real photographs supplied by the client. Room categories and availability are confirmed separately by management.",
   ],
   [
-    "Are the apartment categories available to book?",
+    "Are the room categories available to book?",
     "Categories marked “Preview” show design concepts. Only management-published accommodation can appear in live availability and booking.",
   ],
   [
@@ -202,6 +211,7 @@ export const uploadedPhotos: GalleryPhoto[] = [
   ["img10", "Guest bedroom with armchairs and a glass table", "rooms"],
   ["img11", "Lift landing and guest room entrance", "facilities"],
   ["img12", "Reception counter and waiting area", "reception"],
+  ["img13", "Lift and guest corridor", "facilities"],
   ["img14", "Breakfast tray with tea and accompaniments", "dining"],
   ["img15", "Glass entrance to the hotel lobby", "entrance"],
 ].map(([name, alt, category]) => ({
@@ -217,7 +227,6 @@ previewPhotos.splice(
   0,
   previewPhotos.length,
   ...uploadedPhotos,
-  ...previewPhotos.filter((p) => p.hotelId !== "flower-inn"),
 );
 const flower = previewHotels.find((h) => h.id === "flower-inn");
 if (flower) flower.gallery = uploadedPhotos.map((p) => p.src);
@@ -235,7 +244,7 @@ for (const room of previewRooms.filter((r) => r.hotelId === "flower-inn")) {
     ].filter((src, i, a) => a.indexOf(src) === i);
   }
 }
-for (const slide of previewSlides.filter((s) => s.hotel === "flower-inn")) {
+for (const slide of previewSlides) {
   slide.preview = false;
   slide.alt = "Flower Inn guest room";
 }

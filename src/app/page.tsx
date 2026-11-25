@@ -1,3 +1,4 @@
+import { FlowerAccent } from "@/components/FlowerAccent";
 import { FloralCollection } from "@/components/FloralCollection";
 import {
   HotelCard,
@@ -27,10 +28,10 @@ export default async function HomePage() {
       <div className="container hero-search-overlap">
         <div className="search-overlap-head">
           <div>
-            <span className="eyebrow">YOUR NEXT CHAPTER</span>
-            <strong>Find your kind of stay</strong>
+            <span className="eyebrow">PLAN YOUR HOTEL STAY</span>
+            <strong>Explore our kind of stay</strong>
           </div>
-          <span>Two properties. One simple search.</span>
+          <span>Two hotels. One simple search.</span>
         </div>
         <SearchForm />
       </div>
@@ -39,7 +40,8 @@ export default async function HomePage() {
           visible={data.visualPreview || data.photos.some((p) => p.preview)}
         />
       </div>
-      <section className="section section-story container">
+      <section className="section section-story container flower-decorated">
+        <FlowerAccent side="right" />
         <div className="story-visual">
           <div className="story-primary">
             <ImageCover
@@ -64,11 +66,11 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="story-copy">
-          <span className="eyebrow with-line">THE INN COLLECTION</span>
+          <span className="eyebrow with-line">FLOWER INN & PETAL INN</span>
           <h2 className="serif">
-            Good places.
+            Welcome to our hotels.
             <br />
-            <em>Beautiful possibilities.</em>
+            <em>Explore our next stay.</em>
           </h2>
           <p>
             Flower Inn and Petal Inn bring two property experiences into one
@@ -76,17 +78,17 @@ export default async function HomePage() {
             and make space for your next journey.
           </p>
           <p>
-            From a room for a short visit to the idea of a longer apartment
-            stay, start with the space that suits your plans. Availability,
+            Whether you are planning a short visit or a longer hotel
+            stay, choose a room that suits your plans. Availability,
             facilities and rates are confirmed by each property.
           </p>
           <Link className="text-link" href="/about">
-            Meet the collection
+            About our hotels
           </Link>
           <div className="story-metrics">
             <div>
               <strong>02</strong>
-              <span>Property collections</span>
+              <span>Hotels</span>
             </div>
             <div>
               <strong>01</strong>
@@ -98,12 +100,12 @@ export default async function HomePage() {
       <section className="section section-hotels">
         <div className="container">
           <SectionTitle
-            eyebrow="CHOOSE YOUR COLLECTION"
+            eyebrow="CHOOSE YOUR HOTEL"
             title={
               <>
-                Two properties.
+                Two hotels.
                 <br />
-                <em>Your own way to stay.</em>
+                <em>Find the right room.</em>
               </>
             }
             description="Explore Flower Inn and Petal Inn individually. Each property keeps its own accommodation, contacts and facilities."
@@ -117,18 +119,19 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-      <section className="section container" id="accommodations">
+      <section className="section container flower-decorated" id="accommodations">
+        <FlowerAccent side="left" />
         <SectionTitle
-          eyebrow="ROOM TO BE YOURSELF"
+          eyebrow="OUR HOTEL ROOMS"
           title={
             <>
-              A room. An apartment.
+              A room for every stay.
               <br />
-              <em>A little breathing space.</em>
+              <em>Choose your comfort.</em>
             </>
           }
           description="Browse the accommodation collection. Categories labeled Preview are illustrative and cannot be reserved until management confirms the inventory."
-          action="All accommodation"
+          action="View all rooms"
           href="/rooms"
         />
         <div className="rooms-grid">
@@ -140,11 +143,11 @@ export default async function HomePage() {
       <section className="why-collection">
         <div className="container">
           <div>
-            <span className="eyebrow on-dark">A MORE CONSIDERED JOURNEY</span>
+            <span className="eyebrow on-dark">PLAN YOUR STAY</span>
             <h2 className="serif">
-              The little things.
+              Your room.
               <br />
-              <em>The whole experience.</em>
+              <em>Your hotel stay.</em>
             </h2>
           </div>
           <div className="why-grid">
@@ -152,7 +155,7 @@ export default async function HomePage() {
               [
                 BedDouble,
                 "Space for your plans",
-                "Compare room and apartment categories in one place.",
+                "Compare room categories in one place.",
               ],
               [
                 CalendarCheck,
@@ -161,8 +164,8 @@ export default async function HomePage() {
               ],
               [
                 Leaf,
-                "Two distinct collections",
-                "Explore each property on its own terms.",
+                "Two hotels to explore",
+                "View rooms and contact details for Flower Inn and Petal Inn.",
               ],
             ].map(([Icon, title, description]) => {
               const I = Icon as typeof BedDouble;
@@ -181,10 +184,10 @@ export default async function HomePage() {
       <section className="section gallery-home-section">
         <div className="container">
           <SectionTitle
-            eyebrow="THROUGH OUR LENS"
+            eyebrow="HOTEL PHOTO GALLERY"
             title={
               <>
-                Picture the <em>possibilities.</em>
+                Explore our <em>hotel spaces.</em>
               </>
             }
             description="Take a closer look at the collection. Open any photograph to explore the gallery."
@@ -206,11 +209,11 @@ export default async function HomePage() {
         <div className="offers-overlay" />
         <div className="container offers-banner-inner">
           <div>
-            <span className="eyebrow">SOMETHING TO LOOK FORWARD TO</span>
+            <span className="eyebrow">PLAN YOUR NEXT VISIT</span>
             <h2 className="serif">
               Make room for
               <br />
-              <em>your next escape.</em>
+              <em>your next hotel stay.</em>
             </h2>
             <p>
               Approved property offers will appear when available. Explore your
@@ -225,9 +228,10 @@ export default async function HomePage() {
       <FloralCollection />
       <GuestStories />
       <FaqSection data={data} />
-      <section className="contact-collection">
+      <section className="contact-collection flower-decorated">
+        <FlowerAccent side="right" />
         <div className="container">
-          <span className="eyebrow">LET&apos;S PLAN YOUR NEXT CHAPTER</span>
+          <span className="eyebrow">PLAN YOUR HOTEL STAY</span>
           <h2 className="serif">
             A good stay begins
             <br />

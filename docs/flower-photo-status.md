@@ -8,7 +8,7 @@ Source: https://www.google.com/travel/hotels/entity/ChoI8-TWybCWqpHpARoNL2cvMTFz
 
 The supplied Maps identity is CID 16799175046952497779. Direct Maps retrieval was unavailable; no coordinates or Place ID were inferred. Google Hotels corroborates the address. No Google photographs were downloaded.
 
-No owner originals or publication authorization were provided. Existing local WebP samples have source, license, checksum and dimensions in `public/images/credits.json`. Visible sample badges distinguish them from authentic uploads.
+Update, 25 November 2026: the client supplied `public/images/img.png` through `img15.png` and requested that these replace the existing photography. All 16 supplied photographs are in the gallery. Heroes, accommodation cards and editorial sections use this collection. Former stock WebP files and unused flow PNG files were removed. `public/images/credits.json` now records the supplied files, dimensions and checksums. The brand logo is retained. The shared collection does not establish which room inventory or Petal Inn property each photograph represents.
 
 ## Admin workflow
 

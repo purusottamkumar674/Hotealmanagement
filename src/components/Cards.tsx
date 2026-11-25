@@ -89,7 +89,7 @@ export function RoomCard({
   return (
     <article className="room-card">
       <div className="room-photo">
-        <ImageCover src={room.image} alt={`${room.name} accommodation photo`} hotelId={room.hotelId} fallback="/images/common/room-placeholder.webp" allowSamples={room.samplesEnabled}/>
+        <ImageCover src={room.image} alt={`${room.name} accommodation photo`} hotelId={room.hotelId} fallback="/images/img1.png" allowSamples={room.samplesEnabled}/>
         <div className="room-hotel-badge">{hotel.name}</div>
       </div>
       <div className="room-card-body">

@@ -4,7 +4,7 @@ import { demoMode } from "@/lib/platform";
 import { visualCatalog as catalog } from "@/lib/server/visual-catalog";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Rooms & apartments",
+  title: "Rooms",
   alternates: { canonical: "/rooms" },
 };
 export default async function RoomsPage() {
@@ -14,7 +14,7 @@ export default async function RoomsPage() {
     <main className="container content-shell">
       <section className="section">
         <SectionTitle
-          eyebrow="ROOMS & APARTMENTS"
+          eyebrow="ROOMS"
           title={
             <>
               Find your <em>kind of comfort.</em>

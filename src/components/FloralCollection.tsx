@@ -1,11 +1,9 @@
 import Image from "next/image";
 
 const flowers = [
-  ["flow", "Pink lotus reflected in water"],
-  ["flow1", "Red rose with dew drops"],
-  ["flow2", "Golden sunflower in the evening light"],
-  ["flow3", "Pink, red and yellow tulips"],
-  ["flow4", "Purple orchids among green leaves"],
+  ["img1", "Hotel guest room"], ["img8", "Hotel reception"],
+  ["img2", "Guest room and seating"], ["img14", "Breakfast tray"],
+  ["img15", "Hotel entrance"],
 ];
 
 export function FloralCollection() {
@@ -15,19 +13,19 @@ export function FloralCollection() {
       aria-labelledby="floral-title"
     >
       <div className="floral-collection-heading">
-        <span className="eyebrow">INSPIRED BY NATURE</span>
+        <span className="eyebrow">EXPLORE OUR HOTEL</span>
         <h2 className="serif" id="floral-title">
-          A little colour.
+          Rooms and reception.
           <br />
-          <em>A moment of calm.</em>
+          <em>A closer look.</em>
         </h2>
-        <p>Flowers and petals — the inspiration behind our collection.</p>
+        <p>Take a look at our guest rooms, reception and hotel spaces.</p>
       </div>
       <div className="floral-collection-grid">
         {flowers.map(([name, alt]) => (
           <div className="floral-collection-photo" key={name}>
             <Image
-              src={`/${name}.png`}
+              src={`/images/${name}.png`}
               alt={alt}
               fill
               sizes="(max-width: 600px) 45vw, (max-width: 1000px) 30vw, 20vw"

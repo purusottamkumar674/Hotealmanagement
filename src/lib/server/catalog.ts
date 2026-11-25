@@ -160,7 +160,7 @@ export async function catalog(staff?: Session): Promise<Catalog> {
         name: r.name,
         subtitle:
           r.accommodation_category === "apartment"
-            ? `${r.bhk_count} BHK apartment`
+            ? `${r.bhk_count} BHK room`
             : "Guest room",
         description: r.description || "",
         image: (photos.find((m) => m.featured) || photos[0])?.url || "",

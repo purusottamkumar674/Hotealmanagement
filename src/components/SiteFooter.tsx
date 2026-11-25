@@ -29,7 +29,7 @@ const quickLinks = [
   ["/", "Home"],
   ["/about", "About Us"],
   ["/hotels", "Our Hotels"],
-  ["/rooms", "Rooms & Apartments"],
+  ["/rooms", "Rooms"],
   ["/gallery", "Gallery"],
   ["/amenities", "Amenities"],
   ["/contact", "Contact Us"],

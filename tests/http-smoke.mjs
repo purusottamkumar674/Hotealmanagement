@@ -126,7 +126,7 @@ if (!state.databaseConfigured) {
 for (const width of [640, 1920]) {
   await check("local hero optimized for width " + width, async () => {
     const r = await get(
-      "/_next/image?url=%2Fimages%2Fhotels%2Fflower-inn%2Fhero-1.webp&w=" +
+      "/_next/image?url=%2Fimages%2Fimg1.png&w=" +
         width +
         "&q=75",
     );

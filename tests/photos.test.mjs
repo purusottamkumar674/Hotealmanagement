@@ -5,7 +5,7 @@ import crypto from "node:crypto";
 import sharp from "sharp";
 import { completeSlides } from "../src/lib/photo-slides.ts";
 
-test("authorized local samples decode and match the license manifest", async () => {
+test("client-supplied photographs decode and match the asset manifest", async () => {
   const manifest = JSON.parse(
     fs.readFileSync("public/images/credits.json", "utf8"),
   );
@@ -18,7 +18,8 @@ test("authorized local samples decode and match the license manifest", async () 
     const decoded = await sharp(bytes).metadata();
     assert.equal(decoded.width, asset.width);
     assert.equal(decoded.height, asset.height);
-    assert.ok(asset.license && asset.illustrative);
+    assert.equal(asset.source, "client-supplied");
+    assert.equal(asset.illustrative, false);
   }
 });
 
@@ -39,7 +40,7 @@ test("partial published slider retains originals and fills to four without dupli
 test('fallbacks remain property scoped and reject third-party hotlinks', async () => {
  const {imageCandidates}=await import('../src/components/HotelImage.tsx');
  const candidates=imageCandidates('https://images.unsplash.com/example.jpg','flower-inn');
- assert.ok(candidates.includes('/images/hotels/flower-inn/exterior.webp'));
+ assert.ok(candidates.includes('/images/img.png'));
  assert.ok(candidates.every(src=>!src.includes('petal-inn')&&!src.startsWith('http')));
- assert.deepEqual(imageCandidates('/images/hotels/flower-inn/exterior.webp','flower-inn',undefined,false),[]);
+ assert.deepEqual(imageCandidates('/images/img.png','flower-inn',undefined,false),['/images/img.png']);
 });
