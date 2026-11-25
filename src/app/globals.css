@@ -3302,3 +3302,34 @@ body {
   .flower-accent-bud { width: 32px; height: 32px; left: 55px; top: 65px; }
   .flower-accent-leaf { width: 50px; height: 50px; top: 70px; }
 }
+
+.floating-contacts { position: fixed; bottom: max(26px, env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 14px; z-index: 75; }
+.floating-contacts-left { left: 20px; }
+.floating-contacts-right { right: 20px; }
+.floating-contact { position: relative; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; border: 1px solid #ffffff65; color: white; box-shadow: 0 6px 22px #102b2430; cursor: pointer; }
+.floating-contact svg { width: 25px; height: 25px; }
+.contact-whatsapp { background: #16883e; }
+.contact-call { background: #173e30; }
+.contact-location { background: #a44a35; }
+.contact-instagram { background: linear-gradient(145deg, #7545b5, #c23574 55%, #bc5f1b); }
+.floating-contact span { position: absolute; white-space: nowrap; background: #15372c; color: #fff; font-size: 14px; padding: 8px 12px; border-radius: 8px; opacity: 0; visibility: hidden; pointer-events: none; }
+.floating-contacts-left span { left: calc(100% + 12px); }
+.floating-contacts-right span { right: calc(100% + 12px); }
+.floating-contact:hover span, .floating-contact:focus-visible span { opacity: 1; visibility: visible; }
+.floating-contact:hover { color: white; }
+.floating-contact:focus-visible { outline: 3px solid #d4b887; outline-offset: 5px; }
+.floating-contact:disabled { cursor: default; }
+@keyframes contact-bob { 0%,100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+@media (prefers-reduced-motion: no-preference) {
+  .floating-contact { animation: contact-bob 4s ease-in-out infinite; transition: transform .25s, box-shadow .25s; }
+  .floating-contact:nth-child(2) { animation-delay: -2s; }
+  .floating-contacts-right .floating-contact { animation-delay: -1s; }
+  .floating-contact:hover, .floating-contact:focus-visible { animation-play-state: paused; transform: scale(1.08); box-shadow: 0 8px 26px #102b2445; }
+}
+@media (max-width:600px) {
+  .floating-contacts { bottom: max(18px, env(safe-area-inset-bottom)); gap: 10px; }
+  .floating-contacts-left { left: 10px; }
+  .floating-contacts-right { right: 10px; }
+  .floating-contact { width: 44px; height: 44px; }
+  .floating-contact svg { width: 22px; height: 22px; }
+}

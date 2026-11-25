@@ -3,6 +3,7 @@ import type { Hotel } from "@/lib/catalog";
 import { usePathname } from "next/navigation";
 import { BrandContext } from "./BrandContext";
 import { type FooterContact, SiteFooter } from "./SiteFooter";
+import { FloatingContacts } from "./FloatingContacts";
 import { SiteHeader } from "./SiteHeader";
 export function AppChrome({
   children,
@@ -21,6 +22,7 @@ export function AppChrome({
     <BrandContext.Provider value={hotels}>
       {!isAdmin && <SiteHeader />}
       {children}
+      {!isAdmin && <FloatingContacts contacts={footerContacts} />}
       {!isAdmin && (
         <SiteFooter contacts={footerContacts} bannerImage={footerBanner} />
       )}
